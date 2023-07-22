@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.17",
+    "@bundlr-network/client": "^0.11.9",
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@rainbow-me/rainbowkit": "^1.0.7",
