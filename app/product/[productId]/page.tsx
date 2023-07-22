@@ -13,52 +13,131 @@ import { Fragment } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { Tab } from "@headlessui/react";
 
+// URLs for Reviews
+// https://yjxf7u26qbo2zhfsdakdvgqgyjp24s4wff6bjpozmjqebummaejq.arweave.net/wm5f016AXaycshgUOpoGwl-uS5YpfBS92WJgQNGMARM
+// https://ehgz3mc2hratntnemqedyn73mzgbhe3vachoiaxmsylu6ma7ev4q.arweave.net/Ic2dsFo8QTbNpGQIPDf7ZkwTk3UAjuQC7JYXTzAfJXk
+
+function ReviewRow({ review: review, reviewIdx: reviewIdx }) {
+  const [reviewRating, setReviewRating] = useState(5);
+  const [reviewContent, setReviewContent] = useState("");
+
+  function myUrlTrimmed(url: string) {
+    return url.slice(8, 12) + "..." + url.slice(-4);
+  }
+
+  useEffect(() => {
+    async function init() {
+      if (review._reviewDecentralizedStorageURL) {
+        const response = await fetch(review._reviewDecentralizedStorageURL);
+        const textContent = await response.text();
+
+        try {
+          const modifiedTextContent = textContent.slice(1, -1);
+          const reviewObject = JSON.parse(modifiedTextContent);
+          console.log(reviewObject);
+          setReviewRating(reviewObject.rating);
+          setReviewContent(reviewObject.reviewContent);
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }
+
+    init();
+  }, [review]);
+
+  return (
+    <div key={review.id} className="flex space-x-4 text-sm text-gray-500">
+      <div className="flex-none py-10">
+        <img
+          src={
+            "https://nebout-hamm.com/wp-content/uploads/2017/11/smiling-emoticon-square-face.png"
+          }
+          alt=""
+          className="h-10 w-10 rounded-full bg-gray-100"
+        />
+      </div>
+      <div
+        className={classNames(
+          reviewIdx === 0 ? "" : "border-t border-gray-200",
+          "py-10"
+        )}
+      >
+        <h3 className="font-medium text-gray-900">{review.author}</h3>
+        <p>
+          <time dateTime={review.datetime}>{review.date}</time>
+        </p>
+
+        <div className="mt-4 flex items-center">
+          {[0, 1, 2, 3, 4].map((rating) => (
+            <StarIcon
+              key={rating}
+              className={classNames(
+                reviewRating > rating ? "text-yellow-400" : "text-gray-300",
+                "h-5 w-5 flex-shrink-0"
+              )}
+              aria-hidden="true"
+            />
+          ))}
+        </div>
+        <p className="sr-only">{reviewRating} out of 5 stars</p>
+
+        <div
+          className="prose prose-sm mt-4 max-w-none text-gray-500"
+          dangerouslySetInnerHTML={{ __html: reviewContent }}
+        />
+        <p className="pt-2 text-xs">
+          <a href={review._reviewDecentralizedStorageURL}>
+            Arweave Tx:{" "}
+            <span className="text-blue-500">
+              {myUrlTrimmed(review._reviewDecentralizedStorageURL)}
+            </span>
+          </a>
+        </p>
+      </div>
+    </div>
+  );
+}
+
 const product = {
   name: "Application UI Icon Pack",
-  version: { name: "1.0", date: "June 5, 2021", datetime: "2021-06-05" },
-  price: "$220",
   description:
     "The Application UI Icon Pack comes with over 200 icons in 3 styles: outline, filled, and branded. This playful icon pack is tailored for complex application user interfaces with a friendly and legible look.",
-  highlights: [
-    "200+ SVG icons in 3 unique styles",
-    "Compatible with Figma, Sketch, and Adobe XD",
-    "Drawn on 24 x 24 pixel grid",
-  ],
   imageSrc:
     "https://tailwindui.com/img/ecommerce-images/product-page-05-product-01.jpg",
   imageAlt:
     "Sample of 30 icons with friendly and fun details in outline, filled, and brand color styles.",
 };
-const reviews = {
-  average: 4,
-  featured: [
-    {
-      id: 1,
-      rating: 5,
-      content: `
-        <p>This icon pack is just what I need for my latest project. There's an icon for just about anything I could ever need. Love the playful look!</p>
-      `,
-      date: "July 16, 2021",
-      datetime: "2021-07-16",
-      author: "Emily Selman",
-      avatarSrc:
-        "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
-    },
-    {
-      id: 2,
-      rating: 5,
-      content: `
-        <p>Blown away by how polished this icon pack is. Everything looks so consistent and each SVG is optimized out of the box so I can use it directly with confidence. It would take me several hours to create a single icon this good, so it's a steal at this price.</p>
-      `,
-      date: "July 12, 2021",
-      datetime: "2021-07-12",
-      author: "Hector Gibbons",
-      avatarSrc:
-        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
-    },
-    // More reviews...
-  ],
-};
+// const reviews = {
+//   average: 4,
+//   featured: [
+//     {
+//       id: 1,
+//       rating: 5,
+//       content: `
+//         <p>This icon pack is just what I need for my latest project. There's an icon for just about anything I could ever need. Love the playful look!</p>
+//       `,
+//       date: "July 16, 2021",
+//       datetime: "2021-07-16",
+//       author: "Emily Selman",
+//       avatarSrc:
+//         "https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
+//     },
+//     {
+//       id: 2,
+//       rating: 5,
+//       content: `
+//         <p>Blown away by how polished this icon pack is. Everything looks so consistent and each SVG is optimized out of the box so I can use it directly with confidence. It would take me several hours to create a single icon this good, so it's a steal at this price.</p>
+//       `,
+//       date: "July 12, 2021",
+//       datetime: "2021-07-12",
+//       author: "Hector Gibbons",
+//       avatarSrc:
+//         "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80",
+//     },
+//     // More reviews...
+//   ],
+// };
 const faqs = [
   {
     question: "What format are these icons?",
@@ -106,7 +185,32 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-function ProductOverview() {
+function ProductOverview({ productId: productId }) {
+  const GET_ALL_REVIEWS_FOR_ADDRESS = gql`
+    query GetAllReviewsForAddress {
+      addedReviews(
+        where: {
+          existingReviewableAddress: "${productId}"
+        }
+      ) {
+        id
+        existingReviewableAddress
+        _reviewDecentralizedStorageURL
+        currentBlockTime
+      }
+    }
+  `;
+
+  const { data: allReviewsForAddress } = useQuery(GET_ALL_REVIEWS_FOR_ADDRESS);
+  const [reviewsForAddress, setReviewsForAddress] = useState([]);
+
+  useEffect(() => {
+    if (allReviewsForAddress) {
+      console.log(allReviewsForAddress.addedReviews);
+      setReviewsForAddress(allReviewsForAddress.addedReviews);
+    }
+  }, [allReviewsForAddress]);
+
   return (
     <div>
       <div className="mx-auto px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
@@ -184,55 +288,8 @@ function ProductOverview() {
                 <Tab.Panel className="-mb-10">
                   <h3 className="sr-only">Customer Reviews</h3>
 
-                  {reviews.featured.map((review, reviewIdx) => (
-                    <div
-                      key={review.id}
-                      className="flex space-x-4 text-sm text-gray-500"
-                    >
-                      <div className="flex-none py-10">
-                        <img
-                          src={review.avatarSrc}
-                          alt=""
-                          className="h-10 w-10 rounded-full bg-gray-100"
-                        />
-                      </div>
-                      <div
-                        className={classNames(
-                          reviewIdx === 0 ? "" : "border-t border-gray-200",
-                          "py-10"
-                        )}
-                      >
-                        <h3 className="font-medium text-gray-900">
-                          {review.author}
-                        </h3>
-                        <p>
-                          <time dateTime={review.datetime}>{review.date}</time>
-                        </p>
-
-                        <div className="mt-4 flex items-center">
-                          {[0, 1, 2, 3, 4].map((rating) => (
-                            <StarIcon
-                              key={rating}
-                              className={classNames(
-                                review.rating > rating
-                                  ? "text-yellow-400"
-                                  : "text-gray-300",
-                                "h-5 w-5 flex-shrink-0"
-                              )}
-                              aria-hidden="true"
-                            />
-                          ))}
-                        </div>
-                        <p className="sr-only">
-                          {review.rating} out of 5 stars
-                        </p>
-
-                        <div
-                          className="prose prose-sm mt-4 max-w-none text-gray-500"
-                          dangerouslySetInnerHTML={{ __html: review.content }}
-                        />
-                      </div>
-                    </div>
+                  {reviewsForAddress.map((review, reviewIdx) => (
+                    <ReviewRow review={review} reviewIdx={reviewIdx} />
                   ))}
                 </Tab.Panel>
               </Tab.Panels>
@@ -245,43 +302,9 @@ function ProductOverview() {
 }
 
 export default function Page({ params }: { params: { productId: string } }) {
-  const GET_ALL_REVIEWS_FOR_ADDRESS = gql`
-    query GetAllReviewsForAddress {
-      addedReviews(
-        where: {
-          existingReviewableAddress: "${params.productId}"
-        }
-      ) {
-        id
-        existingReviewableAddress
-        _reviewDecentralizedStorageURL
-        currentBlockTime
-      }
-    }
-  `;
-
-  const { data: allReviewsForAddress } = useQuery(GET_ALL_REVIEWS_FOR_ADDRESS);
-  const [reviewsForAddress, setReviewsForAddress] = useState([]);
-
-  useEffect(() => {
-    if (allReviewsForAddress) {
-      console.log(allReviewsForAddress.addedReviews);
-      setReviewsForAddress(allReviewsForAddress.addedReviews);
-    }
-  }, [allReviewsForAddress]);
-
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
-      <ProductOverview />
-      {/* <ProductOverview /> */}
-      {/* <h1>Product: {params.productId}</h1>
-      <h2>Reviews</h2>
-      {reviewsForAddress.map((review, reviewIdx) => (
-        <>
-          <p>Review {reviewIdx}</p>
-          <p>Review: {review._reviewDecentralizedStorageURL}</p>
-        </>
-      ))} */}
+      <ProductOverview productId={params.productId} />
     </div>
   );
 }
