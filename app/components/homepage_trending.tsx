@@ -12,13 +12,13 @@ export default function Homepage_Trending() {
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
             Trending products
           </h2>
-          {/* <a
-            href="#"
+          <a
+            href="all-collections"
             className="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block"
           >
             See everything
             <span aria-hidden="true"> &rarr;</span>
-          </a> */}
+          </a>
         </div>
 
         <div className="relative mt-8">
@@ -41,7 +41,7 @@ export default function Homepage_Trending() {
                     </div>
                     <div className="mt-6">
                       <h3 className="mt-1 font-semibold text-gray-900">
-                        <a href={product.contractAddress}>
+                        <a href={"product/" + product.contractAddress}>
                           <span className="absolute inset-0" />
                           {product.name}
                         </a>
