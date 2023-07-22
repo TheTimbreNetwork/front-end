@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 export const LensApolloClient = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: "https://api.studio.thegraph.com/query/35226/timbrenetwork1/version/latest",
+  uri: "https://api.studio.thegraph.com/query/35226/timbrenetwork1/version/latest"
 });
 
 import { Fragment } from "react";
@@ -18,7 +18,7 @@ import { Tab } from "@headlessui/react";
 // https://ehgz3mc2hratntnemqedyn73mzgbhe3vachoiaxmsylu6ma7ev4q.arweave.net/Ic2dsFo8QTbNpGQIPDf7ZkwTk3UAjuQC7JYXTzAfJXk
 
 function ReviewRow({ review: review, reviewIdx: reviewIdx }) {
-  const [reviewRating, setReviewRating] = useState(5);
+  const [reviewRating, setReviewRating] = useState("5");
   const [reviewContent, setReviewContent] = useState("");
 
   function myUrlTrimmed(url: string) {
@@ -32,10 +32,10 @@ function ReviewRow({ review: review, reviewIdx: reviewIdx }) {
         const textContent = await response.text();
 
         try {
-          const modifiedTextContent = textContent.slice(1, -1);
-          const reviewObject = JSON.parse(modifiedTextContent);
-          setReviewRating(reviewObject.rating);
-          setReviewContent(reviewObject.reviewContent);
+          let modifiedTextContent = textContent.split("[reviewContent]");
+          modifiedTextContent = modifiedTextContent[1].split("[rating]");
+          setReviewContent(modifiedTextContent[0]);
+          setReviewRating(modifiedTextContent[1]);
         } catch (e) {
           console.error(e);
         }
@@ -105,7 +105,7 @@ const product = {
   imageSrc:
     "https://tailwindui.com/img/ecommerce-images/product-page-05-product-01.jpg",
   imageAlt:
-    "Sample of 30 icons with friendly and fun details in outline, filled, and brand color styles.",
+    "Sample of 30 icons with friendly and fun details in outline, filled, and brand color styles."
 };
 // const reviews = {
 //   average: 4,
@@ -141,13 +141,13 @@ const faqs = [
   {
     question: "What format are these icons?",
     answer:
-      "The icons are in SVG (Scalable Vector Graphic) format. They can be imported into your design tool of choice and used directly in code.",
+      "The icons are in SVG (Scalable Vector Graphic) format. They can be imported into your design tool of choice and used directly in code."
   },
   {
     question: "Can I use the icons at different sizes?",
     answer:
-      "Yes. The icons are drawn on a 24 x 24 pixel grid, but the icons can be scaled to different sizes as needed. We don't recommend going smaller than 20 x 20 or larger than 64 x 64 to retain legibility and visual balance.",
-  },
+      "Yes. The icons are drawn on a 24 x 24 pixel grid, but the icons can be scaled to different sizes as needed. We don't recommend going smaller than 20 x 20 or larger than 64 x 64 to retain legibility and visual balance."
+  }
   // More FAQs...
 ];
 const license = {
@@ -177,7 +177,7 @@ const license = {
     <li>Don\'t be greedy. Selling or distributing these icons in their original or modified state is prohibited.</li>
     <li>Don\'t be evil. These icons cannot be used on websites or applications that promote illegal or immoral beliefs or activities.</li>
     </ul>
-  `,
+  `
 };
 
 function classNames(...classes) {
