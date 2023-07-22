@@ -1,8 +1,10 @@
 "use client";
 
 import { TextArea } from "../../../components/text_area";
+import TimbreProtocolABI from "../../../abi/TimbreProtocolABI.json";
 
 import { useState } from "react";
+import { useContractWrite } from "wagmi";
 
 function SelectMenu({
   menuDescription,
@@ -69,8 +71,17 @@ export default function Page({ params }: { params: { productId: string } }) {
     upload();
   }
 
+  // POLYGON MAINNET
+  const { data: newData, write } = useContractWrite({
+    address: "0xdCE8bb4e037210b9D02330a9FC3E8136E4c441D5",
+    abi: TimbreProtocolABI,
+    functionName: "addReview"
+  });
+
   function uploadReviewToBlockchain(e) {
     e.preventDefault();
+    console.log([productId, transaction, 0]);
+    write({ args: [productId, transaction, 0] });
   }
 
   return (
