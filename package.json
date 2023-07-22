@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.17",
     "@rainbow-me/rainbowkit": "^1.0.7",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@types/node": "20.4.3",
