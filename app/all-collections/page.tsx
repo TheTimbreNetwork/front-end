@@ -44,6 +44,7 @@ function Table() {
     if (allReviewableAddresses) {
       console.log(allReviewableAddresses.addedReviewableAddresses);
       setReviewableAddresses(allReviewableAddresses.addedReviewableAddresses);
+      console.log(reviewableAddresses);
     }
   }, [allReviewableAddresses]);
 
