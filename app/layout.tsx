@@ -23,13 +23,13 @@ const { chains, publicClient } = configureChains(
 const { connectors } = getDefaultWallets({
   appName: "Timbre Network",
   projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || "",
-  chains,
+  chains
 });
 
 const wagmiConfig = createConfig({
   autoConnect: true,
   connectors,
-  publicClient,
+  publicClient
 });
 
 const inter = Inter({ subsets: ["latin"] });
@@ -42,11 +42,11 @@ const inter = Inter({ subsets: ["latin"] });
 
 const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: "https://api.studio.thegraph.com/query/35226/timbrenetwork1/version/latest",
+  uri: "https://api.studio.thegraph.com/query/35226/timbrenetwork2/version/latest"
 });
 
 export default function RootLayout({
-  children,
+  children
 }: {
   children: React.ReactNode;
 }) {

@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 export const LensApolloClient = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: "https://api.studio.thegraph.com/query/35226/timbrenetwork1/version/latest",
+  uri: "https://api.studio.thegraph.com/query/35226/timbrenetwork2/version/latest"
 });
 
 export const GET_ALL_REVIEWABLE_ADDRESSES = gql`

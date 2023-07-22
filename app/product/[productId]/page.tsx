@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 export const LensApolloClient = new ApolloClient({
   cache: new InMemoryCache(),
-  uri: "https://api.studio.thegraph.com/query/35226/timbrenetwork1/version/latest"
+  uri: "https://api.studio.thegraph.com/query/35226/timbrenetwork2/version/latest"
 });
 
 import { Fragment } from "react";
@@ -18,8 +18,13 @@ import { Tab } from "@headlessui/react";
 // https://ehgz3mc2hratntnemqedyn73mzgbhe3vachoiaxmsylu6ma7ev4q.arweave.net/Ic2dsFo8QTbNpGQIPDf7ZkwTk3UAjuQC7JYXTzAfJXk
 
 function ReviewRow({ review: review, reviewIdx: reviewIdx }) {
+  const [reviewer, setReviewer] = useState("Anonymous");
   const [reviewRating, setReviewRating] = useState("5");
   const [reviewContent, setReviewContent] = useState("");
+
+  function myAddressTrimmed(address: string) {
+    return address.slice(0, 4) + "..." + address.slice(-4);
+  }
 
   function myUrlTrimmed(url: string) {
     return url.slice(8, 12) + "..." + url.slice(-4);
@@ -62,7 +67,9 @@ function ReviewRow({ review: review, reviewIdx: reviewIdx }) {
           "py-10"
         )}
       >
-        <h3 className="font-medium text-gray-900">{review.author}</h3>
+        <h3 className="font-medium text-gray-900">
+          {myAddressTrimmed(review.reviewer)}
+        </h3>
         <p>
           <time dateTime={review.datetime}>{review.date}</time>
         </p>
@@ -87,7 +94,7 @@ function ReviewRow({ review: review, reviewIdx: reviewIdx }) {
         />
         <p className="pt-2 text-xs">
           <a href={review._reviewDecentralizedStorageURL}>
-            Arweave Tx:{" "}
+            Decentralized Storage Tx:{" "}
             <span className="text-blue-500">
               {myUrlTrimmed(review._reviewDecentralizedStorageURL)}
             </span>
@@ -193,6 +200,7 @@ function ProductOverview({ productId: productId }) {
         }
       ) {
         id
+        reviewer
         existingReviewableAddress
         _reviewDecentralizedStorageURL
         currentBlockTime
