@@ -86,7 +86,9 @@ export default function Page({ params }: { params: { productId: string } }) {
 
   return (
     <div className="flex min-h-screen flex-col items-center p-24">
-      <h1 className="text-xl">Post Review</h1>
+      <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+        Post Review
+      </h1>
       <form className="w-full mt-6" onSubmit={uploadReviewToBlockchain}>
         <TextArea setDescription={setDescription} />
         <div className="mt-6 flex flex-col w-8/12 justify-center mx-auto">
