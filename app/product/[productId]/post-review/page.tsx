@@ -73,7 +73,7 @@ export default function Page({ params }: { params: { productId: string } }) {
 
   // POLYGON MAINNET
   const { data: newData, write } = useContractWrite({
-    address: "0xdCE8bb4e037210b9D02330a9FC3E8136E4c441D5",
+    address: "0xd5ad6CD8cdee5adffe4A1256095D9F421296686F",
     abi: TimbreProtocolABI,
     functionName: "addReview"
   });
