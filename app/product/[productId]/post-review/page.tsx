@@ -69,17 +69,14 @@ export default function Page({ params }: { params: { productId: string } }) {
     upload();
   }
 
-  // function uploadReviewToBlockchain(e) {
-  //   e.preventDefault();
-  //   console.log(transaction);
-  //   disabled={!uploadedText}
-  //    onSubmit={uploadReviewToBlockchain}
-  // }
+  function uploadReviewToBlockchain(e) {
+    e.preventDefault();
+  }
 
   return (
     <div className="flex min-h-screen flex-col items-center p-24">
       <h1 className="text-xl">Post Review</h1>
-      <form className="w-full mt-6">
+      <form className="w-full mt-6" onSubmit={uploadReviewToBlockchain}>
         <TextArea setDescription={setDescription} />
         <div className="mt-6 flex flex-col w-8/12 justify-center mx-auto">
           <div className="">
@@ -109,8 +106,13 @@ export default function Page({ params }: { params: { productId: string } }) {
             (Step 1) Upload Review to Decentralized Storage
           </button>
           <button
+            disabled={!uploadedText}
             type="submit"
-            className="rounded-md w-full bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className={`rounded-md w-full ${
+              !uploadedText ? "bg-indigo-200" : "bg-indigo-600"
+            } px-3 py-2 text-sm font-semibold text-white shadow-sm ${
+              !uploadedText ? "hover:bg-indigo-100" : "hover:bg-indigo-500"
+            } focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
           >
             (Step 2) Post Review
           </button>
