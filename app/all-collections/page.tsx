@@ -44,11 +44,11 @@ function Table() {
   }, [allReviewableAddresses]);
 
   return (
-    <div className="px-4 sm:px-6 lg:px-8">
+    <div className="px-2 sm:px-3 lg:px-4 w-8/12">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-gray-900">
-            All Collections
+          <h1 className="text-xl font-semibold leading-6 text-gray-900">
+            All Collection
           </h1>
           <p className="mt-2 text-sm text-gray-700">
             A list of all the contracts that are reviewable.
@@ -73,7 +73,7 @@ function Table() {
                     scope="col"
                     className="sticky top-0 z-10 border-b border-gray-300 bg-white bg-opacity-75 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 backdrop-blur backdrop-filter sm:pl-6 lg:pl-8"
                   >
-                    Name
+                    Contract Address
                   </th>
                   {/* <th
                     scope="col"
@@ -175,7 +175,7 @@ function Table() {
 
 export default function Page() {
   return (
-    <div className="flex min-h-screen flex-col items-center p-24">
+    <div className="flex min-h-screen flex-col items-center mt-12">
       <Table />
     </div>
   );
