@@ -28,7 +28,9 @@ export default function Homepage_Trending() {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    setProducts(getTrendingProducts(chain.id));
+    if (chain) {
+      setProducts(getTrendingProducts(chain.id));
+    }
   }, [chain]);
 
   const { data: allReviews } = useQuery(GET_ALL_REVIEWS);
@@ -75,7 +77,7 @@ export default function Homepage_Trending() {
               role="list"
               className="mx-4 inline-flex space-x-8 sm:mx-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-x-8 lg:space-x-0"
             >
-              {products.map((product) => (
+              {products?.map((product) => (
                 <li
                   key={product.id}
                   className="inline-flex w-64 flex-col text-center lg:w-auto"

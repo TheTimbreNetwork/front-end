@@ -3,6 +3,7 @@
 import { TextArea } from "../../../components/text_area";
 import TimbreProtocolABI_Polygon from "../../../abi/TimbreProtocolABI_polygon.json";
 import TimbreProtocolABI_PolygonZKEVM from "../../../abi/TimbreProtocolABI_polygonZkEvm.json";
+import TimbreProtocolABI_Gnosis from "../../../abi/TimbreProtocolABI_gnosis.json";
 
 import { useEffect, useState } from "react";
 import { useContractWrite, useNetwork } from "wagmi";
@@ -87,6 +88,11 @@ export default function Page({ params }: { params: { productId: string } }) {
       setTimbreProtocolABI(TimbreProtocolABI_PolygonZKEVM);
       setTimbreProtocolAddress(
         process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ZKEVM_ADDRESS
+      );
+    } else if (chain.id === 100) {
+      setTimbreProtocolABI(TimbreProtocolABI_Gnosis);
+      setTimbreProtocolAddress(
+        process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_GNOSIS_ADDRESS
       );
     }
   }, [chain]);

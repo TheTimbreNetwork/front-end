@@ -12,7 +12,8 @@ import {
   polygon,
   optimism,
   arbitrum,
-  polygonZkEvm
+  polygonZkEvm,
+  gnosis
 } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
@@ -22,7 +23,7 @@ import Navigation from "./components/navigation";
 // removed alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), from before publicProvider()
 //  due to extra setup needed for alchemy
 const { chains, publicClient } = configureChains(
-  [polygon, polygonZkEvm, mainnet, optimism, arbitrum],
+  [polygon, polygonZkEvm, gnosis, mainnet, optimism, arbitrum],
   [publicProvider()]
 );
 
