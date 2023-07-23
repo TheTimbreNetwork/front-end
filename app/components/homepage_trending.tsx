@@ -1,9 +1,27 @@
 import { useEffect, useState } from "react";
 import { useNetwork } from "wagmi";
 
+import { gql } from "@apollo/client";
+import { useQuery } from "@apollo/client";
+
 import { getTrendingProducts } from "../api/trendingProducts";
 
-let products = [];
+import { StarIcon } from "@heroicons/react/20/solid";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
+
+export const GET_ALL_REVIEWS = gql`
+  query GetAllReviews {
+    addedReviews {
+      id
+      reviewer
+      existingReviewableAddress
+      _reviewDecentralizedStorageURL
+    }
+  }
+`;
 
 export default function Homepage_Trending() {
   const { chain } = useNetwork();
@@ -12,6 +30,28 @@ export default function Homepage_Trending() {
   useEffect(() => {
     setProducts(getTrendingProducts(chain.id));
   }, [chain]);
+
+  const { data: allReviews } = useQuery(GET_ALL_REVIEWS);
+  const [allReviewsByAddress, setAllReviewsByAddress] = useState({});
+
+  useEffect(() => {
+    if (allReviews) {
+      const mappingOfReviewsByAddress = {};
+      allReviews.addedReviews.forEach((review) => {
+        if (mappingOfReviewsByAddress[review.existingReviewableAddress]) {
+          mappingOfReviewsByAddress[review.existingReviewableAddress].push(
+            review
+          );
+        } else {
+          mappingOfReviewsByAddress[review.existingReviewableAddress] = [
+            review
+          ];
+        }
+      });
+      setAllReviewsByAddress(mappingOfReviewsByAddress);
+      console.log(allReviewsByAddress);
+    }
+  }, [allReviews]);
 
   return (
     <div className="w-full">
@@ -55,9 +95,22 @@ export default function Homepage_Trending() {
                         </a>
                       </h3>
                       <p className="mt-1 text-gray-900">
-                        {product.floorPrice}
-                        {" ETH"}
+                        {product.totalReviews} reviews
                       </p>
+                      <div className="flex justify-center mt-2 flex items-center">
+                        {[0, 1, 2, 3, 4].map((rating) => (
+                          <StarIcon
+                            key={rating}
+                            className={classNames(
+                              product.averageReview > rating
+                                ? "text-yellow-400"
+                                : "text-gray-300",
+                              "h-5 w-5 flex-shrink-0"
+                            )}
+                            aria-hidden="true"
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </li>
