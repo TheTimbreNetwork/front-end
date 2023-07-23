@@ -4,11 +4,6 @@ import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
 
-export const LensApolloClient = new ApolloClient({
-  cache: new InMemoryCache(),
-  uri: "https://api.studio.thegraph.com/query/35226/timbrenetwork2/version/latest"
-});
-
 import { Fragment } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { Tab } from "@headlessui/react";
