@@ -7,6 +7,9 @@ import { useState, useEffect } from "react";
 import { Fragment } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { Tab } from "@headlessui/react";
+import { useNetwork } from "wagmi";
+
+import { getTrendingProducts } from "../../api/trendingProducts";
 
 // URLs for Reviews
 // https://yjxf7u26qbo2zhfsdakdvgqgyjp24s4wff6bjpozmjqebummaejq.arweave.net/wm5f016AXaycshgUOpoGwl-uS5YpfBS92WJgQNGMARM
@@ -100,15 +103,6 @@ function ReviewRow({ review: review, reviewIdx: reviewIdx }) {
   );
 }
 
-const product = {
-  name: "Application UI Icon Pack",
-  description:
-    "The Application UI Icon Pack comes with over 200 icons in 3 styles: outline, filled, and branded. This playful icon pack is tailored for complex application user interfaces with a friendly and legible look.",
-  imageSrc:
-    "https://tailwindui.com/img/ecommerce-images/product-page-05-product-01.jpg",
-  imageAlt:
-    "Sample of 30 icons with friendly and fun details in outline, filled, and brand color styles."
-};
 // const reviews = {
 //   average: 4,
 //   featured: [
@@ -186,7 +180,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-function ProductOverview({ productId: productId }) {
+function ProductOverview({ productId: productId, product: product }) {
   const GET_ALL_REVIEWS_FOR_ADDRESS = gql`
     query GetAllReviewsForAddress {
       addedReviews(
@@ -222,7 +216,6 @@ function ProductOverview({ productId: productId }) {
             <div className="aspect-h-3 aspect-w-4 overflow-hidden rounded-lg bg-gray-100">
               <img
                 src={product.imageSrc}
-                alt={product.imageAlt}
                 className="object-cover object-center"
               />
             </div>
@@ -309,9 +302,20 @@ function ProductOverview({ productId: productId }) {
 }
 
 export default function Page({ params }: { params: { productId: string } }) {
+  const [product, setProduct] = useState({});
+
+  const { chain } = useNetwork();
+
+  useEffect(() => {
+    const reviewProduct = getTrendingProducts(chain.id).find(
+      (review) => review.contractAddress === params.productId
+    );
+    setProduct(reviewProduct);
+  }, [chain]);
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
-      <ProductOverview productId={params.productId} />
+    <div className="flex min-h-screen flex-col items-center justify-between">
+      <ProductOverview productId={params.productId} product={product} />
     </div>
   );
 }
