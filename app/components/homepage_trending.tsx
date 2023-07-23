@@ -15,7 +15,7 @@ export default function Homepage_Trending() {
 
   return (
     <div className="w-full">
-      <div className="py-16 sm:py-24 lg:mx-auto lg:max-w-7xl lg:px-8">
+      <div className="py-8 sm:py-12 lg:mx-auto lg:max-w-7xl lg:px-8">
         <div className="flex items-center justify-between px-4 sm:px-6 lg:px-0">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
             Trending products
