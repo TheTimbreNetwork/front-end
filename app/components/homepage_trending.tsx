@@ -1,9 +1,17 @@
+import { useEffect, useState } from "react";
+import { useNetwork } from "wagmi";
+
 import { getTrendingProducts } from "../api/trendingProducts";
 
 let products = [];
 
 export default function Homepage_Trending() {
-  products = getTrendingProducts(137);
+  const { chain } = useNetwork();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    setProducts(getTrendingProducts(chain.id));
+  }, [chain]);
 
   return (
     <div className="w-full">

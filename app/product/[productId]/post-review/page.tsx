@@ -1,10 +1,11 @@
 "use client";
 
 import { TextArea } from "../../../components/text_area";
-import TimbreProtocolABI from "../../../abi/TimbreProtocolABI.json";
+import TimbreProtocolABI_Polygon from "../../../abi/TimbreProtocolABI_polygon.json";
+import TimbreProtocolABI_PolygonZKEVM from "../../../abi/TimbreProtocolABI_polygonZkEvm.json";
 
-import { useState } from "react";
-import { useContractWrite } from "wagmi";
+import { useEffect, useState } from "react";
+import { useContractWrite, useNetwork } from "wagmi";
 
 function SelectMenu({
   menuDescription,
@@ -45,6 +46,11 @@ export default function Page({ params }: { params: { productId: string } }) {
   const [transaction, setTransaction] = useState("");
   const [uploadedText, setUploadedText] = useState(false);
 
+  const { chain } = useNetwork();
+
+  const [timbreProtocolABI, setTimbreProtocolABI] = useState(null);
+  const [timbreProtocolAddress, setTimbreProtocolAddress] = useState(null);
+
   async function upload() {
     if (!description || !rating) return;
     try {
@@ -71,10 +77,23 @@ export default function Page({ params }: { params: { productId: string } }) {
     upload();
   }
 
-  // POLYGON MAINNET
+  useEffect(() => {
+    if (chain.id === 137) {
+      setTimbreProtocolABI(TimbreProtocolABI_Polygon);
+      setTimbreProtocolAddress(
+        process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ADDRESS
+      );
+    } else if (chain.id === 1101) {
+      setTimbreProtocolABI(TimbreProtocolABI_PolygonZKEVM);
+      setTimbreProtocolAddress(
+        process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ZKEVM_ADDRESS
+      );
+    }
+  }, [chain]);
+
   const { data: newData, write } = useContractWrite({
-    address: "0xd5ad6CD8cdee5adffe4A1256095D9F421296686F",
-    abi: TimbreProtocolABI,
+    address: timbreProtocolAddress,
+    abi: timbreProtocolABI,
     functionName: "addReview"
   });
 

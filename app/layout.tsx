@@ -7,7 +7,13 @@ import { Inter } from "next/font/google";
 import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { mainnet, polygon, optimism, arbitrum, zora } from "wagmi/chains";
+import {
+  mainnet,
+  polygon,
+  optimism,
+  arbitrum,
+  polygonZkEvm
+} from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 
@@ -16,7 +22,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache } from "@apollo/client";
 // removed alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), from before publicProvider()
 //  due to extra setup needed for alchemy
 const { chains, publicClient } = configureChains(
-  [polygon, mainnet, optimism, arbitrum],
+  [polygon, polygonZkEvm, mainnet, optimism, arbitrum],
   [publicProvider()]
 );
 
