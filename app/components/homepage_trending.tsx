@@ -5,6 +5,7 @@ import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 
 import { getTrendingProducts, ProductMap } from "../api/trendingProducts";
+import { Review } from "../types/types";
 
 import { StarIcon } from "@heroicons/react/20/solid";
 
@@ -22,13 +23,6 @@ export const GET_ALL_REVIEWS = gql`
     }
   }
 `;
-
-type Review = {
-  id: string;
-  reviewer: string;
-  existingReviewableAddress: string;
-  _reviewDecentralizedStorageURL: string;
-};
 
 export default function Homepage_Trending() {
   const { chain } = useNetwork();

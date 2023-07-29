@@ -10,12 +10,18 @@ import { Tab } from "@headlessui/react";
 import { useNetwork } from "wagmi";
 
 import { getTrendingProducts } from "../../api/trendingProducts";
+import { Review } from "../../types/types";
 
 // URLs for Reviews
 // https://yjxf7u26qbo2zhfsdakdvgqgyjp24s4wff6bjpozmjqebummaejq.arweave.net/wm5f016AXaycshgUOpoGwl-uS5YpfBS92WJgQNGMARM
 // https://ehgz3mc2hratntnemqedyn73mzgbhe3vachoiaxmsylu6ma7ev4q.arweave.net/Ic2dsFo8QTbNpGQIPDf7ZkwTk3UAjuQC7JYXTzAfJXk
 
-function ReviewRow({ review: review, reviewIdx: reviewIdx }) {
+interface ReviewRowProps {
+  review: Review;
+  reviewIdx: number;
+}
+
+function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
   const [reviewer, setReviewer] = useState("Anonymous");
   const [reviewRating, setReviewRating] = useState("5");
   const [reviewContent, setReviewContent] = useState("");
