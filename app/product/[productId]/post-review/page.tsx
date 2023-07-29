@@ -4,6 +4,7 @@ import { TextArea } from "../../../components/text_area";
 import TimbreProtocolABI_Polygon from "../../../abi/TimbreProtocolABI_polygon.json";
 import TimbreProtocolABI_PolygonZKEVM from "../../../abi/TimbreProtocolABI_polygonZkEvm.json";
 import TimbreProtocolABI_Gnosis from "../../../abi/TimbreProtocolABI_gnosis.json";
+import { SelectMenuProps } from "../../../types/types";
 
 import { useEffect, useState } from "react";
 import { useContractWrite, useNetwork } from "wagmi";
@@ -14,7 +15,7 @@ function SelectMenu({
   menuDefaultValue,
   menuOptions,
   setter
-}) {
+}: SelectMenuProps) {
   return (
     <div>
       <label
@@ -73,7 +74,9 @@ export default function Page({ params }: { params: { productId: string } }) {
     }
   }
 
-  function uploadReviewToDecentralizedStorage(e) {
+  function uploadReviewToDecentralizedStorage(
+    e: React.FormEvent<HTMLFormElement>
+  ) {
     e.preventDefault();
     upload();
   }
