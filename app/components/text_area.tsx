@@ -34,7 +34,11 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export function TextArea({ setDescription }) {
+interface TextAreaProps {
+  setDescription: (value: string) => void;
+}
+
+export function TextArea({ setDescription }: TextAreaProps) {
   return (
     <div className="flex justify-center">
       <div className="w-8/12 overflow-hidden rounded-lg border border-gray-300 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
