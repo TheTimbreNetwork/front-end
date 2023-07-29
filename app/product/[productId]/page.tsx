@@ -209,7 +209,7 @@ function ProductOverview({ productId, product }: ProductOverviewProps) {
   `;
 
   const { data: allReviewsForAddress } = useQuery(GET_ALL_REVIEWS_FOR_ADDRESS);
-  const [reviewsForAddress, setReviewsForAddress] = useState([]);
+  const [reviewsForAddress, setReviewsForAddress] = useState<Review[]>([]);
 
   useEffect(() => {
     if (allReviewsForAddress) {
@@ -295,7 +295,7 @@ function ProductOverview({ productId, product }: ProductOverviewProps) {
                 <Tab.Panel className="-mb-10">
                   <h3 className="sr-only">Customer Reviews</h3>
 
-                  {reviewsForAddress.map((review, reviewIdx) => (
+                  {reviewsForAddress.map((review: Review, reviewIdx) => (
                     <ReviewRow
                       key={review.id}
                       review={review}
@@ -318,11 +318,13 @@ export default function Page({ params }: { params: { productId: string } }) {
   const { chain } = useNetwork();
 
   useEffect(() => {
-    const reviewProduct: ProductMap =
-      getTrendingProducts(chain.id).find(
-        (review) => review.contractAddress === params.productId
-      ) || ({} as ProductMap);
-    setProduct(reviewProduct);
+    if (chain) {
+      const reviewProduct: ProductMap =
+        getTrendingProducts(chain.id).find(
+          (review) => review.contractAddress === params.productId
+        ) || ({} as ProductMap);
+      setProduct(reviewProduct);
+    }
   }, [chain]);
 
   return (

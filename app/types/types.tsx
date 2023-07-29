@@ -3,4 +3,5 @@ export type Review = {
   reviewer: string;
   existingReviewableAddress: string;
   _reviewDecentralizedStorageURL: string;
+  currentBlockTime?: string;
 };
