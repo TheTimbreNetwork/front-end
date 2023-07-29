@@ -23,7 +23,7 @@ interface ReviewRowProps {
 
 function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
   const [reviewer, setReviewer] = useState("Anonymous");
-  const [reviewRating, setReviewRating] = useState("5");
+  const [reviewRating, setReviewRating] = useState(5);
   const [reviewContent, setReviewContent] = useState("");
 
   function myAddressTrimmed(address: string) {
@@ -44,7 +44,7 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
           let modifiedTextContent = textContent.split("[reviewContent]");
           modifiedTextContent = modifiedTextContent[1].split("[rating]");
           setReviewContent(modifiedTextContent[0]);
-          setReviewRating(modifiedTextContent[1]);
+          setReviewRating(Number(modifiedTextContent[1]));
         } catch (e) {
           console.error(e);
         }
@@ -74,9 +74,9 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
         <h3 className="font-medium text-gray-900">
           {myAddressTrimmed(review.reviewer)}
         </h3>
-        <p>
+        {/* <p>
           <time dateTime={review.datetime}>{review.date}</time>
-        </p>
+        </p> */}
 
         <div className="mt-4 flex items-center">
           {[0, 1, 2, 3, 4].map((rating) => (
@@ -90,7 +90,7 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
             />
           ))}
         </div>
-        <p className="sr-only">{reviewRating} out of 5 stars</p>
+        <p className="sr-only">{String(reviewRating)} out of 5 stars</p>
 
         <div
           className="prose prose-sm mt-4 max-w-none text-gray-500"
