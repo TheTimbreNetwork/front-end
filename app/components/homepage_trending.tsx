@@ -23,6 +23,13 @@ export const GET_ALL_REVIEWS = gql`
   }
 `;
 
+type Review = {
+  id: string;
+  reviewer: string;
+  existingReviewableAddress: string;
+  _reviewDecentralizedStorageURL: string;
+};
+
 export default function Homepage_Trending() {
   const { chain } = useNetwork();
   const [products, setProducts] = useState<ProductMap[]>([]);
@@ -38,8 +45,8 @@ export default function Homepage_Trending() {
 
   useEffect(() => {
     if (allReviews) {
-      const mappingOfReviewsByAddress = {};
-      allReviews.addedReviews.forEach((review) => {
+      const mappingOfReviewsByAddress: { [address: string]: Review[] } = {};
+      allReviews.addedReviews.forEach((review: Review) => {
         if (mappingOfReviewsByAddress[review.existingReviewableAddress]) {
           mappingOfReviewsByAddress[review.existingReviewableAddress].push(
             review
