@@ -79,7 +79,7 @@ export default function Page({ params }: { params: { productId: string } }) {
   }
 
   function uploadReviewToDecentralizedStorage(
-    e: React.FormEvent<HTMLFormElement>
+    e: React.MouseEvent<HTMLButtonElement>
   ) {
     e.preventDefault();
     upload();
@@ -119,7 +119,7 @@ export default function Page({ params }: { params: { productId: string } }) {
     functionName: "addReview"
   });
 
-  function uploadReviewToBlockchain(e) {
+  function uploadReviewToBlockchain(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log([productId, transaction, 0]);
     write({ args: [productId, transaction, 0] });
