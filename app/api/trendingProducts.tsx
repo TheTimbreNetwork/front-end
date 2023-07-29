@@ -1,15 +1,19 @@
-const chainIdToProductMap: {
-  [key: number]: {
-    name: string;
-    id: number;
-    imageSrc: string;
-    floorPrice: number;
-    averageReview: number;
-    totalReviews: number;
-    contractAddress: string;
-    description: string;
-  }[];
-} = {
+export type ProductMap = {
+  name: string;
+  id: number;
+  imageSrc: string;
+  floorPrice: number;
+  averageReview: number;
+  totalReviews: number;
+  contractAddress: string;
+  description: string;
+};
+
+type ChainIdtoProductMap = {
+  [id: string]: ProductMap[];
+};
+
+const chainIdToProductMap: ChainIdtoProductMap = {
   137: [
     {
       name: "The Starbucks Siren Collection",
@@ -126,15 +130,6 @@ const chainIdToProductMap: {
   ]
 };
 
-export function getTrendingProducts(chainId: number): {
-  name: string;
-  id: number;
-  imageSrc: string;
-  floorPrice: number;
-  averageReview: number;
-  totalReviews: number;
-  contractAddress: string;
-  description: string;
-}[] {
+export function getTrendingProducts(chainId: number): ProductMap[] {
   return chainIdToProductMap[chainId];
 }

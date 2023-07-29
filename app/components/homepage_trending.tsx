@@ -4,11 +4,11 @@ import { useNetwork } from "wagmi";
 import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 
-import { getTrendingProducts } from "../api/trendingProducts";
+import { getTrendingProducts, ProductMap } from "../api/trendingProducts";
 
 import { StarIcon } from "@heroicons/react/20/solid";
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -25,7 +25,7 @@ export const GET_ALL_REVIEWS = gql`
 
 export default function Homepage_Trending() {
   const { chain } = useNetwork();
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<ProductMap[]>([]);
 
   useEffect(() => {
     if (chain) {
