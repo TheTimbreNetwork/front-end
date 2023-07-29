@@ -4,6 +4,8 @@ const chainIdToProductMap: {
     id: number;
     imageSrc: string;
     floorPrice: number;
+    averageReview: number;
+    totalReviews: number;
     contractAddress: string;
     description: string;
   }[];
@@ -129,6 +131,8 @@ export function getTrendingProducts(chainId: number): {
   id: number;
   imageSrc: string;
   floorPrice: number;
+  averageReview: number;
+  totalReviews: number;
   contractAddress: string;
   description: string;
 }[] {

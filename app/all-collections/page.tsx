@@ -4,7 +4,7 @@ import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
 
-export const GET_ALL_REVIEWABLE_ADDRESSES = gql`
+const GET_ALL_REVIEWABLE_ADDRESSES = gql`
   query GetAllReviewableAddresses {
     addedReviewableAddresses {
       id
@@ -35,9 +35,15 @@ function Table() {
   );
   const [reviewableAddresses, setReviewableAddresses] = useState([]);
 
+  type ReviewableAddress = {
+    id: string;
+    newReviewableAddress: string;
+    blockNumber: string;
+    blockTimestamp: string;
+  };
+
   useEffect(() => {
     if (allReviewableAddresses) {
-      console.log(allReviewableAddresses.addedReviewableAddresses);
       setReviewableAddresses(allReviewableAddresses.addedReviewableAddresses);
       console.log(reviewableAddresses);
     }
@@ -102,19 +108,20 @@ function Table() {
                 </tr>
               </thead>
               <tbody>
-                {reviewableAddresses.map((address, addressIdx) => (
-                  <tr key={address.id}>
-                    <td
-                      className={classNames(
-                        addressIdx !== reviewableAddresses.length - 1
-                          ? "border-b border-gray-200"
-                          : "",
-                        "whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
-                      )}
-                    >
-                      {address.newReviewableAddress}
-                    </td>
-                    {/* <td
+                {reviewableAddresses.map(
+                  (address: ReviewableAddress, addressIdx) => (
+                    <tr key={address.id}>
+                      <td
+                        className={classNames(
+                          addressIdx !== reviewableAddresses.length - 1
+                            ? "border-b border-gray-200"
+                            : "",
+                          "whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 lg:pl-8"
+                        )}
+                      >
+                        {address.newReviewableAddress}
+                      </td>
+                      {/* <td
                       className={classNames(
                         personIdx !== reviewableAddresses.length - 1
                           ? "border-b border-gray-200"
@@ -144,26 +151,27 @@ function Table() {
                     >
                       {person.role}
                     </td> */}
-                    <td
-                      className={classNames(
-                        addressIdx !== reviewableAddresses.length - 1
-                          ? "border-b border-gray-200"
-                          : "",
-                        "relative whitespace-nowrap py-4 pr-4 pl-3 text-right text-sm font-medium sm:pr-8 lg:pr-8"
-                      )}
-                    >
-                      <a
-                        href={"product/" + address.newReviewableAddress}
-                        className="text-indigo-600 hover:text-indigo-900"
+                      <td
+                        className={classNames(
+                          addressIdx !== reviewableAddresses.length - 1
+                            ? "border-b border-gray-200"
+                            : "",
+                          "relative whitespace-nowrap py-4 pr-4 pl-3 text-right text-sm font-medium sm:pr-8 lg:pr-8"
+                        )}
                       >
-                        View Product
-                        <span className="sr-only">
-                          , {address.newReviewableAddress}
-                        </span>
-                      </a>
-                    </td>
-                  </tr>
-                ))}
+                        <a
+                          href={"product/" + address.newReviewableAddress}
+                          className="text-indigo-600 hover:text-indigo-900"
+                        >
+                          View Product
+                          <span className="sr-only">
+                            , {address.newReviewableAddress}
+                          </span>
+                        </a>
+                      </td>
+                    </tr>
+                  )
+                )}
               </tbody>
             </table>
           </div>
