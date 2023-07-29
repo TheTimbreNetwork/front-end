@@ -13,3 +13,17 @@ export type SelectMenuProps = {
   menuOptions: string[];
   setter: (value: string) => void;
 };
+
+export type ABIEntry = {
+  inputs: {
+    indexed?: boolean;
+    internalType: string;
+    name: string;
+    type: string;
+  }[];
+  stateMutability: string;
+  type: "constructor" | "function" | "event";
+  anonymous?: boolean;
+  name?: string;
+  outputs?: { internalType: string; name: string; type: string }[];
+};

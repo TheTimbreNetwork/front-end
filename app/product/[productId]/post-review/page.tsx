@@ -1,10 +1,10 @@
 "use client";
 
 import { TextArea } from "../../../components/text_area";
-import TimbreProtocolABI_Polygon from "../../../abi/TimbreProtocolABI_polygon.json";
-import TimbreProtocolABI_PolygonZKEVM from "../../../abi/TimbreProtocolABI_polygonZkEvm.json";
-import TimbreProtocolABI_Gnosis from "../../../abi/TimbreProtocolABI_gnosis.json";
-import { SelectMenuProps } from "../../../types/types";
+import TimbreProtocolABI_Polygon_Import from "../../../abi/TimbreProtocolABI_polygon.json";
+import TimbreProtocolABI_PolygonZKEVM_Import from "../../../abi/TimbreProtocolABI_polygonZkEvm.json";
+import TimbreProtocolABI_Gnosis_Import from "../../../abi/TimbreProtocolABI_gnosis.json";
+import { SelectMenuProps, ABIEntry } from "../../../types/types";
 
 import { useEffect, useState } from "react";
 import { useContractWrite, useNetwork } from "wagmi";
@@ -50,7 +50,9 @@ export default function Page({ params }: { params: { productId: string } }) {
 
   const { chain } = useNetwork();
 
-  const [timbreProtocolABI, setTimbreProtocolABI] = useState(null);
+  const [timbreProtocolABI, setTimbreProtocolABI] = useState<ABIEntry[] | null>(
+    null
+  );
   const [timbreProtocolAddress, setTimbreProtocolAddress] = useState(null);
 
   async function upload() {
@@ -81,22 +83,31 @@ export default function Page({ params }: { params: { productId: string } }) {
     upload();
   }
 
+  const TimbreProtocolABI_Polygon: ABIEntry[] =
+    TimbreProtocolABI_Polygon_Import as ABIEntry[];
+  const TimbreProtocolABI_PolygonZKEVM: ABIEntry[] =
+    TimbreProtocolABI_PolygonZKEVM_Import as ABIEntry[];
+  const TimbreProtocolABI_Gnosis: ABIEntry[] =
+    TimbreProtocolABI_Gnosis_Import as ABIEntry[];
+
   useEffect(() => {
-    if (chain.id === 137) {
-      setTimbreProtocolABI(TimbreProtocolABI_Polygon);
-      setTimbreProtocolAddress(
-        process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ADDRESS
-      );
-    } else if (chain.id === 1101) {
-      setTimbreProtocolABI(TimbreProtocolABI_PolygonZKEVM);
-      setTimbreProtocolAddress(
-        process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ZKEVM_ADDRESS
-      );
-    } else if (chain.id === 100) {
-      setTimbreProtocolABI(TimbreProtocolABI_Gnosis);
-      setTimbreProtocolAddress(
-        process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_GNOSIS_ADDRESS
-      );
+    if (chain) {
+      if (chain.id === 137) {
+        setTimbreProtocolABI(TimbreProtocolABI_Polygon);
+        setTimbreProtocolAddress(
+          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ADDRESS
+        );
+      } else if (chain.id === 1101) {
+        setTimbreProtocolABI(TimbreProtocolABI_PolygonZKEVM);
+        setTimbreProtocolAddress(
+          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ZKEVM_ADDRESS
+        );
+      } else if (chain.id === 100) {
+        setTimbreProtocolABI(TimbreProtocolABI_Gnosis);
+        setTimbreProtocolAddress(
+          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_GNOSIS_ADDRESS
+        );
+      }
     }
   }, [chain]);
 
