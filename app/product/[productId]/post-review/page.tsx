@@ -53,7 +53,9 @@ export default function Page({ params }: { params: { productId: string } }) {
   const [timbreProtocolABI, setTimbreProtocolABI] = useState<ABIEntry[] | null>(
     null
   );
-  const [timbreProtocolAddress, setTimbreProtocolAddress] = useState(null);
+  const [timbreProtocolAddress, setTimbreProtocolAddress] = useState<
+    string | null
+  >(null);
 
   async function upload() {
     if (!description || !rating) return;
@@ -95,17 +97,17 @@ export default function Page({ params }: { params: { productId: string } }) {
       if (chain.id === 137) {
         setTimbreProtocolABI(TimbreProtocolABI_Polygon);
         setTimbreProtocolAddress(
-          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ADDRESS
+          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ADDRESS || null
         );
       } else if (chain.id === 1101) {
         setTimbreProtocolABI(TimbreProtocolABI_PolygonZKEVM);
         setTimbreProtocolAddress(
-          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ZKEVM_ADDRESS
+          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ZKEVM_ADDRESS || null
         );
       } else if (chain.id === 100) {
         setTimbreProtocolABI(TimbreProtocolABI_Gnosis);
         setTimbreProtocolAddress(
-          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_GNOSIS_ADDRESS
+          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_GNOSIS_ADDRESS || null
         );
       }
     }
