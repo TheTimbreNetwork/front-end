@@ -9,7 +9,7 @@ import { StarIcon } from "@heroicons/react/20/solid";
 import { Tab } from "@headlessui/react";
 import { useNetwork } from "wagmi";
 
-import { getTrendingProducts } from "../../api/trendingProducts";
+import { ProductMap, getTrendingProducts } from "../../api/trendingProducts";
 import { Review } from "../../types/types";
 
 // URLs for Reviews
@@ -186,7 +186,12 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-function ProductOverview({ productId: productId, product: product }) {
+type ProductOverviewProps = {
+  productId: string; // Or number or whatever the type should be
+  product: ProductMap; // Assuming you have a type called ProductType
+};
+
+function ProductOverview({ productId, product }: ProductOverviewProps) {
   const GET_ALL_REVIEWS_FOR_ADDRESS = gql`
     query GetAllReviewsForAddress {
       addedReviews(
@@ -308,14 +313,15 @@ function ProductOverview({ productId: productId, product: product }) {
 }
 
 export default function Page({ params }: { params: { productId: string } }) {
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState<ProductMap>({} as ProductMap);
 
   const { chain } = useNetwork();
 
   useEffect(() => {
-    const reviewProduct = getTrendingProducts(chain.id).find(
-      (review) => review.contractAddress === params.productId
-    );
+    const reviewProduct: ProductMap =
+      getTrendingProducts(chain.id).find(
+        (review) => review.contractAddress === params.productId
+      ) || ({} as ProductMap);
     setProduct(reviewProduct);
   }, [chain]);
 
