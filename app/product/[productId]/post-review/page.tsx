@@ -50,12 +50,12 @@ export default function Page({ params }: { params: { productId: string } }) {
 
   const { chain } = useNetwork();
 
-  const [timbreProtocolABI, setTimbreProtocolABI] = useState<ABIEntry[] | null>(
-    null
-  );
+  const [timbreProtocolABI, setTimbreProtocolABI] = useState<
+    ABIEntry[] | undefined
+  >(undefined);
   const [timbreProtocolAddress, setTimbreProtocolAddress] = useState<
-    string | null
-  >(null);
+    string | undefined
+  >(undefined);
 
   async function upload() {
     if (!description || !rating) return;
@@ -97,24 +97,24 @@ export default function Page({ params }: { params: { productId: string } }) {
       if (chain.id === 137) {
         setTimbreProtocolABI(TimbreProtocolABI_Polygon);
         setTimbreProtocolAddress(
-          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ADDRESS || null
+          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ADDRESS
         );
       } else if (chain.id === 1101) {
         setTimbreProtocolABI(TimbreProtocolABI_PolygonZKEVM);
         setTimbreProtocolAddress(
-          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ZKEVM_ADDRESS || null
+          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ZKEVM_ADDRESS
         );
       } else if (chain.id === 100) {
         setTimbreProtocolABI(TimbreProtocolABI_Gnosis);
         setTimbreProtocolAddress(
-          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_GNOSIS_ADDRESS || null
+          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_GNOSIS_ADDRESS
         );
       }
     }
   }, [chain]);
 
   const { data: newData, write } = useContractWrite({
-    address: timbreProtocolAddress,
+    address: timbreProtocolAddress as `0x${string}`,
     abi: timbreProtocolABI,
     functionName: "addReview"
   });
