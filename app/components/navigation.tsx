@@ -1,8 +1,12 @@
+import Image from "next/image";
+
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+
+import logoBlackTimbreNetwork from "@/public/assets/timbre-logo/svg/logo-black.svg";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -23,7 +27,12 @@ export default function Example() {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
-            <img className="h-8 w-auto" src="/logo-no-background.png" alt="" />
+            <Image
+              src={logoBlackTimbreNetwork}
+              alt={"Timbre Network Logo"}
+              className="h-16"
+              unoptimized
+            />
           </a>
         </div>
         <div className="hidden lg:flex lg:gap-x-12">
