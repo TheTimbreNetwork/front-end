@@ -19,7 +19,7 @@ const chainIdToProductMap: ChainIdtoProductMap = {
       name: "The Starbucks Siren Collection",
       id: 0,
       imageSrc:
-        "https://i.seadn.io/gcs/files/65766e8c4bd426f23ec34c8ff55d3546.png?auto=format&dpr=1&w=2048",
+        "https://dl.openseauserdata.com/cache/originImage/files/efe5452d9c9afab2054ea932419e07c7.png",
       floorPrice: 0.398,
       averageReview: 4,
       totalReviews: 4,
@@ -57,7 +57,7 @@ const chainIdToProductMap: ChainIdtoProductMap = {
       name: "The Starbucks Siren Collection",
       id: 0,
       imageSrc:
-        "https://i.seadn.io/gcs/files/65766e8c4bd426f23ec34c8ff55d3546.png?auto=format&dpr=1&w=2048",
+        "https://dl.openseauserdata.com/cache/originImage/files/efe5452d9c9afab2054ea932419e07c7.png",
       floorPrice: 0.398,
       averageReview: -1,
       totalReviews: 0,
@@ -95,7 +95,7 @@ const chainIdToProductMap: ChainIdtoProductMap = {
       name: "The Starbucks Siren Collection",
       id: 0,
       imageSrc:
-        "https://i.seadn.io/gcs/files/65766e8c4bd426f23ec34c8ff55d3546.png?auto=format&dpr=1&w=2048",
+        "https://dl.openseauserdata.com/cache/originImage/files/efe5452d9c9afab2054ea932419e07c7.png",
       floorPrice: 0.398,
       averageReview: -1,
       totalReviews: 0,
