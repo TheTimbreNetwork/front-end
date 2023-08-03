@@ -6,7 +6,8 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-import logoBlackTimbreNetwork from "@/public/assets/timbre-logo/svg/logo-black.svg";
+// import logoBlackTimbreNetwork from "@/public/assets/timbre-logo/svg/logo-black.svg";
+import logoBlackTimbreNetwork from "@/public/assets/timbre-logo/svg/logo-black-beta.svg";
 
 const navigation = [
   { name: "Home", href: "/" },
