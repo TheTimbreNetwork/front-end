@@ -352,7 +352,7 @@ export function Hero() {
             <p className="mt-6 text-lg text-gray-600">
               Build your reputation, monetize your consumer data, and stay
               private. Timbre connects you with the best brands without paid
-              promotions or fake shills. Let your words be the brand's best
+              promotions or fake shills. Let your words be the brand&apos;s best
               advocate!
             </p>
           </div>
