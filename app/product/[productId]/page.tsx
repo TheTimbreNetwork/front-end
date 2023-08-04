@@ -9,7 +9,7 @@ import { StarIcon } from "@heroicons/react/20/solid";
 import { Tab } from "@headlessui/react";
 import { useNetwork } from "wagmi";
 
-import { ProductMap, getTrendingProducts } from "../../api/trendingProducts";
+import { ProductMap, getTrendingProducts } from "../../api/fwbfestProducts";
 import { Review } from "../../types/types";
 
 // URLs for Reviews

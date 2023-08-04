@@ -22,10 +22,8 @@ import Navigation from "./components/navigation";
 
 // removed alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), from before publicProvider()
 //  due to extra setup needed for alchemy
-const { chains, publicClient } = configureChains(
-  [polygon, polygonZkEvm, gnosis, mainnet, optimism, arbitrum],
-  [publicProvider()]
-);
+// removed other chains to avoid confusion: polygonZkEvm, gnosis, mainnet, optimism, arbitrum
+const { chains, publicClient } = configureChains([polygon], [publicProvider()]);
 
 const { connectors } = getDefaultWallets({
   appName: "Timbre Network",
