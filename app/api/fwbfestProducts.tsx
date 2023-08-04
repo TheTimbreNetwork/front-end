@@ -16,7 +16,19 @@ type ChainIdtoProductMap = {
 const chainIdToProductMap: ChainIdtoProductMap = {
   137: [
     {
-      name: "FWB FEST '23 MAP",
+      name: "Seed Club ($CLUB)",
+      id: 1,
+      imageSrc:
+        "https://mirror-media.imgix.net/publication-images/N_JaNGHN_voNpjlDNlwGb.png?h=1200&w=1200",
+      floorPrice: 1.3,
+      averageReview: 5,
+      totalReviews: 1,
+      contractAddress: "0xf76d80200226ac250665139b9e435617e4ba55f9",
+      description:
+        "Seed Club is a community-governed project. The single biggest goal of $CLUB is to attract talent to work on Seed Club projects. This means that $CLUB will be used for: Onboarding, Contributions, Curation. Together, $CLUB acts as a powerful coordination mechanism to get the smartest people in the world into the same room."
+    },
+    {
+      name: "FWB FEST '23",
       id: 0,
       imageSrc:
         "https://ipfs.decentralized-content.com/ipfs/bafybeidjfphppecmijl6ocd2tm7zdj7pmlwbhixx37zdvck3q7h2s4uzd4",
@@ -25,18 +37,6 @@ const chainIdToProductMap: ChainIdtoProductMap = {
       totalReviews: 1,
       contractAddress: "0x1aba79e4fea9ec83cc59776adedf570269c2a1ea",
       description: "A collection of Open Editions created and curated by FWB"
-    },
-    {
-      name: "FWB FEST",
-      id: 1,
-      imageSrc:
-        "https://i.seadn.io/gcs/files/13dfdab7133465736d54b3f83d7d74f8.png?auto=format&dpr=1&w=2048",
-      floorPrice: 0.0,
-      averageReview: 5,
-      totalReviews: 4,
-      contractAddress: "0xd72eb6c069904fae424388a87e08701c1d45d4a8",
-      description:
-        "FWB FEST is an immersive conference and festival experience at the intersection of culture and Web3, curated and produced by the FWB community.The festival will take place August 12-14, 2022 at the Idyllwild Arts Academy.Each NFT represents one ticket to the festival. Register your ticket here to confirm your attendance.More information about the festival can be found here. For any questions, please contact fest@fwb.help."
     }
   ],
   1101: [
