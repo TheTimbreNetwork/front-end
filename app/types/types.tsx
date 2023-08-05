@@ -3,7 +3,7 @@ export type Review = {
   id: string;
   existingReviewableAddress: string;
   _reviewDecentralizedStorageURL: string;
-  currentBlockTime?: string;
+  currentBlockTime: string;
 };
 
 export type SelectMenuProps = {

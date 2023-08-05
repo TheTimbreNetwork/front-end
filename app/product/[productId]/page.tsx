@@ -186,6 +186,30 @@ type ProductOverviewProps = {
   product: ProductMap; // Assuming you have a type called ProductType
 };
 
+function removeOlderReviews(allReviewsForAddress: Review[]) {
+  let reviewsByReviewer: { [key: string]: Review } = {};
+  for (let i = 0; i < allReviewsForAddress.length; i++) {
+    const review = allReviewsForAddress[i];
+    if (reviewsByReviewer[review.reviewer]) {
+      if (
+        reviewsByReviewer[review.reviewer].currentBlockTime <
+        review.currentBlockTime
+      ) {
+        reviewsByReviewer[review.reviewer] = review;
+      }
+    } else {
+      reviewsByReviewer[review.reviewer] = review;
+    }
+  }
+
+  let reviewsByReviewerArray: Review[] = [];
+  for (const key in reviewsByReviewer) {
+    reviewsByReviewerArray.push(reviewsByReviewer[key]);
+  }
+
+  return reviewsByReviewerArray;
+}
+
 function ProductOverview({ productId, product }: ProductOverviewProps) {
   const GET_ALL_REVIEWS_FOR_ADDRESS = gql`
     query GetAllReviewsForAddress {
@@ -208,7 +232,11 @@ function ProductOverview({ productId, product }: ProductOverviewProps) {
 
   useEffect(() => {
     if (allReviewsForAddress) {
-      setReviewsForAddress(allReviewsForAddress.addedReviews);
+      const updatedAllReviews = removeOlderReviews(
+        allReviewsForAddress.addedReviews
+      );
+
+      setReviewsForAddress(updatedAllReviews);
     }
   }, [allReviewsForAddress]);
 
