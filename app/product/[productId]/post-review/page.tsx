@@ -70,19 +70,13 @@ export default function Page({ params }: { params: { productId: string } }) {
         body: entireReviewString
       });
       const json = await response.json();
-      console.log("json:", json);
       setTransaction(json.txId);
       setUploadedText(true);
+      return json.txId;
     } catch (err) {
       console.log({ err });
     }
-  }
-
-  function uploadReviewToDecentralizedStorage(
-    e: React.MouseEvent<HTMLButtonElement>
-  ) {
-    e.preventDefault();
-    upload();
+    return false;
   }
 
   const TimbreProtocolABI_Polygon: ABIEntry[] =
@@ -119,10 +113,12 @@ export default function Page({ params }: { params: { productId: string } }) {
     functionName: "addReview"
   });
 
-  function uploadReviewToBlockchain(e: React.FormEvent<HTMLFormElement>) {
+  async function uploadReviewToBlockchain(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log([productId, transaction, 0]);
-    write({ args: [productId, transaction, 0] });
+    const uploadResult = await upload();
+    if (uploadResult) {
+      write({ args: [productId, uploadResult, 0] });
+    }
   }
 
   return (
@@ -154,21 +150,10 @@ export default function Page({ params }: { params: { productId: string } }) {
         </div>
         <div className="flex flex-col w-8/12 justify-end mx-auto mt-4">
           <button
-            onClick={uploadReviewToDecentralizedStorage}
-            className="rounded-md w-full bg-slate-600 px-3 py-2 my-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
-            (Step 1) Upload Review to Decentralized Storage
-          </button>
-          <button
-            disabled={!uploadedText}
             type="submit"
-            className={`rounded-md w-full ${
-              !uploadedText ? "bg-indigo-200" : "bg-indigo-600"
-            } px-3 py-2 text-sm font-semibold text-white shadow-sm ${
-              !uploadedText ? "hover:bg-indigo-100" : "hover:bg-indigo-500"
-            } focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
+            className={`rounded-md w-full bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
           >
-            (Step 2) Post Review
+            Post Review
           </button>
         </div>
       </form>
