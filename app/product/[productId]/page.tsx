@@ -96,13 +96,8 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
           className="prose prose-sm mt-4 max-w-none text-gray-500"
           dangerouslySetInnerHTML={{ __html: reviewContent }}
         />
-        <p className="pt-2 text-xs">
-          <a href={review._reviewDecentralizedStorageURL}>
-            Decentralized Storage Tx:{" "}
-            <span className="text-blue-500">
-              {myUrlTrimmed(review._reviewDecentralizedStorageURL)}
-            </span>
-          </a>
+        <p className="pt-2 text-xl text-gray-900">
+          <a href={review._reviewDecentralizedStorageURL}>...</a>
         </p>
       </div>
     </div>
