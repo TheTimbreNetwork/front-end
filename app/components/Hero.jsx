@@ -397,7 +397,7 @@ export function Hero() {
               ))}
               <li key={"OrangeDAO"}>
                 <Image
-                  src={"/assets/logos/orangedao.png"}
+                  src={"/assets/logos/OrangeDAO.png"}
                   alt={"OrangeDAO"}
                   width={160}
                   height={10}
