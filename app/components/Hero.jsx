@@ -9,6 +9,7 @@ import { Button } from "./Button";
 import { Container } from "./Container";
 import logoPolygonDAO from "@/public/assets/logos/PolygonDAOLogo.svg";
 import logoAntler from "@/public/assets/logos/antler.svg";
+import logoArweave from "@/public/assets/logos/arweave.svg";
 import { TextField } from "./Fields";
 
 import Homepage_FWBFest from "./homepage_fwbfest";
@@ -380,8 +381,9 @@ export function Hero() {
               className="mx-auto mt-8 flex max-w-xl flex-wrap justify-center gap-x-10 gap-y-8 lg:mx-0 lg:justify-start"
             >
               {[
-                ["PolygonDAO", logoPolygonDAO],
-                ["Antler", logoAntler]
+                ["Arweave", logoArweave]
+                // ["PolygonDAO", logoPolygonDAO],
+                // ["Antler", logoAntler]
                 // ['Wired', logoWired],
                 // ['CNN', logoCnn, 'hidden xl:block'],
                 // ['BBC', logoBbc],
@@ -389,10 +391,19 @@ export function Hero() {
                 // ['Fast Company', logoFastCompany],
                 // ['HuffPost', logoHuffpost, 'hidden xl:block'],
               ].map(([name, logo, className]) => (
-                <li key={name} className={clsx("flex", className)}>
+                <li key={name} className={clsx("flex items-center", className)}>
                   <Image src={logo} alt={name} className="h-8" unoptimized />
                 </li>
               ))}
+              <li key={"OrangeDAO"}>
+                <Image
+                  src={"../assets/logos/orangedao.png"}
+                  alt={"OrangeDAO"}
+                  width={160}
+                  height={10}
+                  unoptimized
+                />
+              </li>
             </ul>
           </div>
         </div>
