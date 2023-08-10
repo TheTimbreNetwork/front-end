@@ -3,6 +3,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { useState } from "react";
 
 import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
@@ -20,6 +21,7 @@ import { publicProvider } from "wagmi/providers/public";
 
 import Navigation from "./components/navigation";
 import { Footer } from "./components/Footer";
+import { BannerWithButton } from "./components/BannerWithButton";
 
 // removed alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), from before publicProvider()
 //  due to extra setup needed for alchemy
@@ -51,11 +53,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const [isBannerVisible, setIsBannerVisible] = useState(true);
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <WagmiConfig config={wagmiConfig}>
           <RainbowKitProvider chains={chains}>
+            {isBannerVisible ? (
+              <BannerWithButton closeBanner={setIsBannerVisible} />
+            ) : null}
             <Navigation />
             {children}
             <Footer />
