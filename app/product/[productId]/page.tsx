@@ -99,7 +99,7 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
           dangerouslySetInnerHTML={{ __html: reviewContent }}
         />
         <p className="pt-2 text-xl text-gray-900 flex items-center">
-          <a href={review._reviewDecentralizedStorageURL}>
+          <a href={review._reviewDecentralizedStorageURL} target="_blank">
             <DocumentTextIcon className="h-7" />
           </a>
           <Image
