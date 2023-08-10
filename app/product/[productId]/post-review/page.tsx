@@ -15,8 +15,41 @@ function SelectMenu({
   menuTitle,
   menuDefaultValue,
   menuOptions,
-  setter
+  setter,
+  isStars
 }: SelectMenuProps) {
+  function starsDefaultValue(menuDefaultValue: string) {
+    if (isStars) {
+      let stars = "";
+      for (let i = 0; i < parseInt(menuDefaultValue); i++) {
+        stars += "⭐";
+      }
+      return stars;
+    }
+    return menuDefaultValue;
+  }
+
+  function displayStars(item: string) {
+    if (isStars) {
+      let stars = "";
+      for (let i = 0; i < parseInt(item); i++) {
+        stars += "⭐";
+      }
+      return stars;
+    }
+    return item;
+  }
+
+  function onChangeHandler(e: React.ChangeEvent<HTMLSelectElement>) {
+    if (isStars) {
+      const stars = e.target.value;
+      let number = stars.length;
+      setter(number.toString());
+    } else {
+      setter(e.target.value);
+    }
+  }
+
   return (
     <div>
       <label
@@ -29,11 +62,11 @@ function SelectMenu({
         id={menuDescription}
         name={menuDescription}
         className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
-        defaultValue={menuDefaultValue}
-        onChange={(e) => setter(e.target.value)}
+        defaultValue={starsDefaultValue(menuDefaultValue)}
+        onChange={onChangeHandler}
       >
         {menuOptions.map((item) => (
-          <option key={item}>{item}</option>
+          <option key={item}>{displayStars(item)}</option>
         ))}
       </select>
     </div>
@@ -136,6 +169,7 @@ export default function Page({ params }: { params: { productId: string } }) {
               menuTitle="Rating"
               menuDefaultValue="5"
               menuOptions={["1", "2", "3", "4", "5"]}
+              isStars={true}
               setter={setRating}
             />
           </div>

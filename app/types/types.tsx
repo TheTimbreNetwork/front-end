@@ -12,6 +12,7 @@ export type SelectMenuProps = {
   menuDefaultValue: string;
   menuOptions: string[];
   setter: (value: string) => void;
+  isStars?: boolean;
 };
 
 export type ABIEntry = {
