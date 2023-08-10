@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Container } from "./Container";
 import { GitHubIcon, LinkedInIcon, TwitterIcon } from "./SocialIcons";
+import { FaTelegram } from "react-icons/fa";
 
 function QrCodeBorder(props) {
   return (
@@ -79,11 +80,11 @@ export function Footer() {
               aria-label="Follow on Twitter"
               icon={TwitterIcon}
             />
-            {/* <SocialLink
-              href="https://instagram.com"
-              aria-label="Follow on Instagram"
-              icon={InstagramIcon}
-            /> */}
+            <SocialLink
+              href="https://t.me/+5ek95VavuFFjODE5"
+              aria-label="Join on Telegram"
+              icon={FaTelegram}
+            />
             <SocialLink
               href="https://github.com/orgs/TheTimbreNetwork/repositories"
               aria-label="Follow on GitHub"
