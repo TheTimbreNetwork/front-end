@@ -5,6 +5,7 @@ import TimbreProtocolABI_Polygon_Import from "../../../abi/TimbreProtocolABI_pol
 import TimbreProtocolABI_PolygonZKEVM_Import from "../../../abi/TimbreProtocolABI_polygonZkEvm.json";
 import TimbreProtocolABI_Gnosis_Import from "../../../abi/TimbreProtocolABI_gnosis.json";
 import { SelectMenuProps, ABIEntry } from "../../../types/types";
+import DetailedSelectMenu from "../../../components/DetailedSelectMenu";
 
 import { useEffect, useState } from "react";
 import { useContractWrite, useNetwork } from "wagmi";
@@ -148,13 +149,18 @@ export default function Page({ params }: { params: { productId: string } }) {
             />
           </div>
         </div>
-        <div className="flex flex-col w-8/12 justify-end mx-auto mt-4">
-          <button
-            type="submit"
-            className={`rounded-md w-full bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600`}
-          >
-            Post Review
-          </button>
+        <div className="flex flex-row w-8/12 justify-center mx-auto mt-4">
+          <div className="flex-grow">
+            <button
+              type="submit"
+              className="w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Post Review
+            </button>
+          </div>
+          <div className="ml-4">
+            <DetailedSelectMenu />
+          </div>
         </div>
       </form>
     </div>
