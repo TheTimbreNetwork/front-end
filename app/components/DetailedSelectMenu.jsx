@@ -4,25 +4,23 @@ import { CheckIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
 
 const publishingOptions = [
   {
-    title: "Review",
-    description: "This review is public and can be viewed by anyone.",
+    title: "Public review",
+    // description: "This review is public and can be viewed by anyone.",
     current: true
   },
   {
-    title: "Private Review (Coming Soon)",
-    description:
-      "This review is private but the reviewer's details are public.",
+    title: "Hide my review (Coming Soon)",
+    // description: "This review is private but the reviewer's details are public.",
     current: false
   },
   {
-    title: "Private Reviewer (Coming Soon)",
-    description:
-      "This review is public but the reviewer's details are private.",
+    title: "Hide my identity (Coming Soon)",
+    // description: "This review is public but the reviewer's details are private.",
     current: false
   },
   {
-    title: "Fully Private Review (Coming Soon)",
-    description: "This review is private and cannot be viewed by anyone.",
+    title: "Hide my review and identity (Coming Soon)",
+    // description: "This review is private and cannot be viewed by anyone.",
     current: false
   }
 ];
