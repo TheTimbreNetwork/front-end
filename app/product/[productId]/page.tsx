@@ -7,7 +7,7 @@ import Image from "next/image";
 
 import { Fragment } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
-// import { StarIcon } from "@heroicons/react/20/solid";
+import { DocumentTextIcon } from "@heroicons/react/24/outline";
 import { Tab } from "@headlessui/react";
 import { useNetwork } from "wagmi";
 
@@ -98,8 +98,10 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
           className="prose prose-sm mt-4 max-w-none text-gray-500"
           dangerouslySetInnerHTML={{ __html: reviewContent }}
         />
-        <p className="pt-2 text-xl text-gray-900 flex">
-          <a href={review._reviewDecentralizedStorageURL}>...</a>
+        <p className="pt-2 text-xl text-gray-900 flex items-center">
+          <a href={review._reviewDecentralizedStorageURL}>
+            <DocumentTextIcon className="h-7" />
+          </a>
           <Image
             src={"/assets/logos/polygon.png"}
             alt={"Polygon"}
