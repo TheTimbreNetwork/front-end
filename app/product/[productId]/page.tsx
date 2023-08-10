@@ -3,9 +3,11 @@
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 import { Fragment } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
+// import { StarIcon } from "@heroicons/react/20/solid";
 import { Tab } from "@headlessui/react";
 import { useNetwork } from "wagmi";
 
@@ -96,8 +98,15 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
           className="prose prose-sm mt-4 max-w-none text-gray-500"
           dangerouslySetInnerHTML={{ __html: reviewContent }}
         />
-        <p className="pt-2 text-xl text-gray-900">
+        <p className="pt-2 text-xl text-gray-900 flex">
           <a href={review._reviewDecentralizedStorageURL}>...</a>
+          <Image
+            src={"/assets/logos/polygon.png"}
+            alt={"Polygon"}
+            height={40}
+            width={40}
+            unoptimized
+          />
         </p>
       </div>
     </div>
