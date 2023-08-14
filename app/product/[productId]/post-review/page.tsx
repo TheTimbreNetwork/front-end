@@ -16,7 +16,8 @@ function SelectMenu({
   menuDefaultValue,
   menuOptions,
   setter,
-  isStars
+  isStars,
+  isDisabled
 }: SelectMenuProps) {
   function starsDefaultValue(menuDefaultValue: string) {
     if (isStars) {
@@ -50,6 +51,13 @@ function SelectMenu({
     }
   }
 
+  function checkDisabled(itemIdx: number) {
+    if (isDisabled) {
+      return isDisabled(itemIdx);
+    }
+    return false;
+  }
+
   return (
     <div>
       <label
@@ -65,8 +73,10 @@ function SelectMenu({
         defaultValue={starsDefaultValue(menuDefaultValue)}
         onChange={onChangeHandler}
       >
-        {menuOptions.map((item) => (
-          <option key={item}>{displayStars(item)}</option>
+        {menuOptions.map((item, itemIdx) => (
+          <option disabled={checkDisabled(itemIdx)} key={item}>
+            {displayStars(item)}
+          </option>
         ))}
       </select>
     </div>
@@ -155,6 +165,11 @@ export default function Page({ params }: { params: { productId: string } }) {
     }
   }
 
+  function isDecentralizedStorageDisabled(index: number) {
+    if (index > 0) return true;
+    return false;
+  }
+
   return (
     <div className="flex min-h-screen flex-col items-center p-12">
       <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
@@ -176,10 +191,11 @@ export default function Page({ params }: { params: { productId: string } }) {
           <div className="mt-4">
             <SelectMenu
               menuDescription="decentralizedStorage"
-              menuTitle="Decentralized Storage"
+              menuTitle="Where to store"
               menuDefaultValue="Arweave"
-              menuOptions={["Arweave"]}
+              menuOptions={["Arweave", "IPFS (Coming Soon)"]}
               setter={setDecentralizedStorage}
+              isDisabled={isDecentralizedStorageDisabled}
             />
           </div>
         </div>

@@ -13,6 +13,7 @@ export type SelectMenuProps = {
   menuOptions: string[];
   setter: (value: string) => void;
   isStars?: boolean;
+  isDisabled?: (index: number) => boolean;
 };
 
 export type ABIEntry = {

@@ -33,8 +33,8 @@ const chainIdToProductMap: ChainIdtoProductMap = {
       imageSrc:
         "https://ipfs.decentralized-content.com/ipfs/bafybeidjfphppecmijl6ocd2tm7zdj7pmlwbhixx37zdvck3q7h2s4uzd4",
       floorPrice: 1.7,
-      averageReview: 5,
-      totalReviews: 2,
+      averageReview: 4,
+      totalReviews: 3,
       contractAddress: "0x1aba79e4fea9ec83cc59776adedf570269c2a1ea",
       description: "A collection of Open Editions created and curated by FWB"
     }
