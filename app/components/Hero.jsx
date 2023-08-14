@@ -404,6 +404,33 @@ export function Hero() {
                   unoptimized
                 />
               </li>
+              <li key={"TheGraph"}>
+                <Image
+                  src={"/assets/logos/thegraph.png"}
+                  alt={"TheGraph"}
+                  width={120}
+                  height={10}
+                  unoptimized
+                />
+              </li>
+              <li key={"Bundlr"} className="mt-3 ml-6">
+                <Image
+                  src={"/assets/logos/bundlr.png"}
+                  alt={"Bundlr"}
+                  width={220}
+                  height={10}
+                  unoptimized
+                />
+              </li>
+              <li key={"ETHGlobal"}>
+                <Image
+                  src={"/assets/logos/ethglobal.png"}
+                  alt={"ETHGlobal"}
+                  width={160}
+                  height={10}
+                  unoptimized
+                />
+              </li>
             </ul>
           </div>
         </div>
