@@ -40,7 +40,7 @@ export default function Example() {
             <a
               key={item.name}
               href={item.href}
-              className="text-sm font-medium leading-6 text-gray-900 text-xl"
+              className="text-lg font-medium leading-6 text-gray-900"
             >
               {item.name}
             </a>
