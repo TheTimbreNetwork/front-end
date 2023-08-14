@@ -22,7 +22,7 @@ const chainIdToProductMap: ChainIdtoProductMap = {
         "https://mirror-media.imgix.net/publication-images/N_JaNGHN_voNpjlDNlwGb.png?h=1200&w=1200",
       floorPrice: 1.3,
       averageReview: 5,
-      totalReviews: 1,
+      totalReviews: 3,
       contractAddress: "0xf76d80200226ac250665139b9e435617e4ba55f9",
       description:
         "Seed Club is a community-governed project. The single biggest goal of $CLUB is to attract talent to work on Seed Club projects. This means that $CLUB will be used for: Onboarding, Contributions, Curation. Together, $CLUB acts as a powerful coordination mechanism to get the smartest people in the world into the same room."
@@ -34,7 +34,7 @@ const chainIdToProductMap: ChainIdtoProductMap = {
         "https://ipfs.decentralized-content.com/ipfs/bafybeidjfphppecmijl6ocd2tm7zdj7pmlwbhixx37zdvck3q7h2s4uzd4",
       floorPrice: 1.7,
       averageReview: 5,
-      totalReviews: 1,
+      totalReviews: 2,
       contractAddress: "0x1aba79e4fea9ec83cc59776adedf570269c2a1ea",
       description: "A collection of Open Editions created and curated by FWB"
     }
