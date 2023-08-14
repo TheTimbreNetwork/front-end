@@ -35,7 +35,7 @@ export default function Example() {
             />
           </a>
         </div>
-        <div className="hidden lg:flex lg:gap-x-12">
+        <div className="hidden lg:flex lg:gap-x-12 mr-16">
           {navigation.map((item) => (
             <a
               key={item.name}
@@ -46,7 +46,7 @@ export default function Example() {
             </a>
           ))}
         </div>
-        <div className="flex flex-1 items-center justify-end gap-x-6">
+        <div className="flex flex-1 items-center justify-end gap-x-6 text-sm">
           <ConnectButton chainStatus="icon" accountStatus="address" />
         </div>
         <div className="flex lg:hidden">
