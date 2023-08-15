@@ -73,9 +73,14 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
           "py-10"
         )}
       >
-        <h3 className="font-medium text-gray-900">
-          {myAddressTrimmed(review.reviewer)}
-        </h3>
+        <a
+          href={"https://polygonscan.com/address/" + review.reviewer}
+          target="_blank"
+        >
+          <h3 className="font-medium text-gray-900">
+            {myAddressTrimmed(review.reviewer)}
+          </h3>
+        </a>
         {/* <p>
           <time dateTime={review.datetime}>{review.date}</time>
         </p> */}
@@ -102,13 +107,13 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
           <a href={review._reviewDecentralizedStorageURL} target="_blank">
             <DocumentTextIcon className="h-7" />
           </a>
-          <Image
+          {/* <Image
             src={"/assets/logos/polygon.png"}
             alt={"Polygon"}
             height={40}
             width={40}
             unoptimized
-          />
+          /> */}
         </p>
       </div>
     </div>
