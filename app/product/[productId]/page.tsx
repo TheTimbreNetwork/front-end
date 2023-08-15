@@ -230,6 +230,8 @@ function ProductOverview({ productId, product }: ProductOverviewProps) {
   const GET_ALL_REVIEWS_FOR_ADDRESS = gql`
     query GetAllReviewsForAddress {
       addedReviews(
+        orderBy: currentBlockTime
+        orderDirection: desc
         where: {
           existingReviewableAddress: "${productId}"
         }
