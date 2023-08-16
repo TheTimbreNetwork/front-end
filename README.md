@@ -8,7 +8,7 @@ This repository contains the front-end Next.js and React code which allows you t
 
 ## Usage
 
-Our product is currently in Beta and if you'd like access or have any questions or suggestions please me on Twitter (https://twitter.com/arshaan_b).
+Our product is currently in Beta and if you'd like access or have any questions or suggestions please contact me on Twitter (https://twitter.com/arshaan_b).
 
 ## Support
 
