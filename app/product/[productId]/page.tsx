@@ -27,6 +27,7 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
   const [reviewer, setReviewer] = useState("Anonymous");
   const [reviewRating, setReviewRating] = useState(5);
   const [reviewContent, setReviewContent] = useState("");
+  const [reviewDate, setReviewDate] = useState("");
 
   function myAddressTrimmed(address: string) {
     return address.slice(0, 4) + "..." + address.slice(-4);
@@ -49,6 +50,40 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
           setReviewRating(Number(modifiedTextContent[1]));
         } catch (e) {
           console.error(e);
+        }
+
+        // Convert the currentBlockTime to a human readable date
+        const date = new Date(Number(review.currentBlockTime) * 1000);
+        const today = new Date();
+        const yesterday = new Date(today);
+
+        yesterday.setDate(yesterday.getDate() - 1);
+
+        if (date.toDateString() === today.toDateString()) {
+          setReviewDate(
+            `Today at ${date.toLocaleTimeString([], {
+              hour: "numeric",
+              minute: "2-digit"
+            })}`
+          );
+        } else if (date.toDateString() === yesterday.toDateString()) {
+          setReviewDate(
+            `Yesterday at ${date.toLocaleTimeString([], {
+              hour: "numeric",
+              minute: "2-digit"
+            })}`
+          );
+        } else {
+          setReviewDate(
+            `${date.toLocaleDateString([], {
+              year: "2-digit",
+              month: "numeric",
+              day: "numeric"
+            })} at ${date.toLocaleTimeString([], {
+              hour: "numeric",
+              minute: "2-digit"
+            })}`
+          );
         }
       }
     }
@@ -81,9 +116,9 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
             {myAddressTrimmed(review.reviewer)}
           </h3>
         </a>
-        {/* <p>
-          <time dateTime={review.datetime}>{review.date}</time>
-        </p> */}
+        <p>
+          <time dateTime={reviewDate}>{reviewDate}</time>
+        </p>
 
         <div className="mt-4 flex items-center">
           {[0, 1, 2, 3, 4].map((rating) => (
