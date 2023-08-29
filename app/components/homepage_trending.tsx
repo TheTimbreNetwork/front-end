@@ -65,7 +65,7 @@ export default function Homepage_Trending() {
           </h2>
           <a
             href="all-collections"
-            className="hidden text-sm font-semibold text-indigo-600 hover:text-indigo-500 sm:block"
+            className="hidden text-sm font-semibold text-gray-600 hover:text-gray-500 sm:block"
           >
             See everything
             <span aria-hidden="true"> &rarr;</span>
@@ -125,7 +125,7 @@ export default function Homepage_Trending() {
         <div className="mt-12 flex px-4 sm:hidden">
           <a
             href="#"
-            className="text-sm font-semibold text-indigo-600 hover:text-indigo-500"
+            className="text-sm font-semibold text-gray-600 hover:text-gray-500"
           >
             See everything
             <span aria-hidden="true"> &rarr;</span>

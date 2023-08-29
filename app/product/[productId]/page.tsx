@@ -307,7 +307,7 @@ function ProductOverview({ productId, product }: ProductOverviewProps) {
             <a href={productId + "/post-review"}>
               <button
                 type="button"
-                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-600 px-8 py-3 text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-gray focus:ring-offset-2 focus:ring-offset-gray-50"
               >
                 Post Review
               </button>
@@ -322,7 +322,7 @@ function ProductOverview({ productId, product }: ProductOverviewProps) {
                     className={({ selected }) =>
                       classNames(
                         selected
-                          ? "border-indigo-600 text-indigo-600"
+                          ? "border-gray-600 text-gray-600"
                           : "border-transparent text-gray-700 hover:border-gray-300 hover:text-gray-800",
                         "whitespace-nowrap border-b-2 py-6 text-sm font-medium"
                       )

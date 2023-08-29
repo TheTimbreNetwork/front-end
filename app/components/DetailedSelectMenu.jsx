@@ -40,12 +40,12 @@ export default function DetailedSelectMenu() {
             Change published status
           </Listbox.Label>
           <div className="relative">
-            <div className="inline-flex divide-x divide-indigo-700 rounded-md shadow-sm">
-              <div className="inline-flex items-center gap-x-1.5 rounded-l-md bg-indigo-600 px-3 py-2 text-white shadow-sm">
+            <div className="inline-flex divide-x divide-gray-700 rounded-md shadow-sm">
+              <div className="inline-flex items-center gap-x-1.5 rounded-l-md bg-gray-600 px-3 py-2 text-white shadow-sm">
                 <CheckIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
                 <p className="text-sm font-semibold">{selected.title}</p>
               </div>
-              <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md bg-indigo-600 p-2 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2 focus:ring-offset-gray-50">
+              <Listbox.Button className="inline-flex items-center rounded-l-none rounded-r-md bg-gray-600 p-2 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 focus:ring-offset-2 focus:ring-offset-gray-50">
                 <span className="sr-only">Change published status</span>
                 <ChevronDownIcon
                   className="h-5 w-5 text-white"
@@ -69,7 +69,7 @@ export default function DetailedSelectMenu() {
                     className={({ active }) =>
                       classNames(
                         active
-                          ? "bg-indigo-600 text-white"
+                          ? "bg-gray-600 text-white"
                           : optionIdx <= 0
                           ? "text-gray-900"
                           : "text-gray-400",
@@ -91,7 +91,7 @@ export default function DetailedSelectMenu() {
                           {selected ? (
                             <span
                               className={
-                                active ? "text-white" : "text-indigo-600"
+                                active ? "text-white" : "text-gray-600"
                               }
                             >
                               <CheckIcon
@@ -104,7 +104,7 @@ export default function DetailedSelectMenu() {
                         <p
                           className={classNames(
                             active
-                              ? "text-indigo-200"
+                              ? "text-gray-200"
                               : optionIdx <= 0
                               ? "text-gray-500"
                               : "text-gray-300",

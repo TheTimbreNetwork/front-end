@@ -6,7 +6,11 @@ import { Inter } from "next/font/google";
 import { useState } from "react";
 
 import "@rainbow-me/rainbowkit/styles.css";
-import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import {
+  getDefaultWallets,
+  RainbowKitProvider,
+  darkTheme
+} from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig, useNetwork } from "wagmi";
 import {
   mainnet,
@@ -59,7 +63,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <WagmiConfig config={wagmiConfig}>
-          <RainbowKitProvider chains={chains}>
+          <RainbowKitProvider
+            chains={chains}
+            theme={darkTheme({
+              accentColor: "#111827"
+            })}
+          >
             {isBannerVisible ? (
               <BannerWithButton closeBanner={setIsBannerVisible} />
             ) : null}
