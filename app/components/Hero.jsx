@@ -376,62 +376,56 @@ export function Hero() {
             <p className="text-center text-sm font-semibold text-gray-900 lg:text-left">
               With support from
             </p>
-            <ul
-              role="list"
-              className="mx-auto mt-8 flex max-w-xl flex-wrap justify-center gap-x-10 gap-y-8 lg:mx-0 lg:justify-start"
-            >
-              {[
-                ["Arweave", logoArweave]
-                // ["PolygonDAO", logoPolygonDAO],
-                // ["Antler", logoAntler]
-                // ['Wired', logoWired],
-                // ['CNN', logoCnn, 'hidden xl:block'],
-                // ['BBC', logoBbc],
-                // ['CBS', logoCbs],
-                // ['Fast Company', logoFastCompany],
-                // ['HuffPost', logoHuffpost, 'hidden xl:block'],
-              ].map(([name, logo, className]) => (
-                <li key={name} className={clsx("flex items-center", className)}>
-                  <Image src={logo} alt={name} className="h-8" unoptimized />
-                </li>
-              ))}
-              <li key={"OrangeDAO"}>
-                <Image
-                  src={"/assets/logos/OrangeDAO.png"}
-                  alt={"OrangeDAO"}
-                  width={160}
-                  height={10}
-                  unoptimized
-                />
-              </li>
-              <li key={"TheGraph"}>
-                <Image
-                  src={"/assets/logos/thegraph.png"}
-                  alt={"TheGraph"}
-                  width={120}
-                  height={10}
-                  unoptimized
-                />
-              </li>
-              <li key={"Bundlr"} className="mt-3 ml-6">
-                <Image
-                  src={"/assets/logos/bundlr.png"}
-                  alt={"Bundlr"}
-                  width={220}
-                  height={10}
-                  unoptimized
-                />
-              </li>
-              <li key={"ETHGlobal"}>
-                <Image
-                  src={"/assets/logos/ethglobal.png"}
-                  alt={"ETHGlobal"}
-                  width={160}
-                  height={10}
-                  unoptimized
-                />
-              </li>
-            </ul>
+            <div className="mx-auto mt-8 flex max-w-xl flex-wrap justify-start gap-x-10 gap-y-8 lg:mx-0 lg:justify-start">
+              <div className="flex flex-wrap justify-between -ml-6">
+                <div className="w-1/3 -mt-2">
+                  <Image
+                    src={"/assets/logos/OrangeDAO.png"}
+                    alt={"OrangeDAO"}
+                    width={160}
+                    height={10}
+                    unoptimized
+                  />
+                </div>
+                <div className="w-1/3">
+                  <Image
+                    src={"/assets/logos/thegraph.png"}
+                    alt={"TheGraph"}
+                    width={120}
+                    height={10}
+                    unoptimized
+                  />
+                </div>
+                <div className="w-1/3 mt-5">
+                  <Image
+                    src={logoArweave}
+                    alt={"Arweave"}
+                    className="h-8"
+                    unoptimized
+                  />
+                </div>
+              </div>
+              <div className="flex flex-wrap justify-between ml-1">
+                <div className="w-1/2 mt-4">
+                  <Image
+                    src={"/assets/logos/bundlr.png"}
+                    alt={"Bundlr"}
+                    width={220}
+                    height={10}
+                    unoptimized
+                  />
+                </div>
+                <div className="w-1/2">
+                  <Image
+                    src={"/assets/logos/ethglobal.png"}
+                    alt={"ETHGlobal"}
+                    width={160}
+                    height={10}
+                    unoptimized
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </Container>
