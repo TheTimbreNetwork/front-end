@@ -142,13 +142,18 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
           <a href={review._reviewDecentralizedStorageURL} target="_blank">
             <DocumentTextIcon className="h-7" />
           </a>
-          {/* <Image
-            src={"/assets/logos/polygon.png"}
-            alt={"Polygon"}
-            height={40}
-            width={40}
-            unoptimized
-          /> */}
+          <a
+            href={`https://polygonscan.com/tx/${review.transactionHash}`}
+            target="_blank"
+          >
+            <Image
+              src={"/assets/logos/polygon.png"}
+              alt={"Polygon"}
+              height={40}
+              width={40}
+              unoptimized
+            />
+          </a>
         </p>
       </div>
     </div>
@@ -276,6 +281,7 @@ function ProductOverview({ productId, product }: ProductOverviewProps) {
         existingReviewableAddress
         _reviewDecentralizedStorageURL
         currentBlockTime
+        transactionHash
       }
     }
   `;

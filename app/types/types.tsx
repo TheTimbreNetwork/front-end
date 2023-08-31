@@ -4,6 +4,7 @@ export type Review = {
   existingReviewableAddress: string;
   _reviewDecentralizedStorageURL: string;
   currentBlockTime: string;
+  transactionHash?: string;
 };
 
 export type SelectMenuProps = {
