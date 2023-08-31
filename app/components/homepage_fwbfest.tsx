@@ -6,23 +6,13 @@ import { useQuery } from "@apollo/client";
 
 import { getTrendingProducts, ProductMap } from "../api/fwbfestProducts";
 import { Review } from "../types/types";
+import { GET_ALL_REVIEWS } from "../graphql/reviews_queries";
 
 import { StarIcon } from "@heroicons/react/20/solid";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
-
-export const GET_ALL_REVIEWS = gql`
-  query GetAllReviews {
-    addedReviews {
-      id
-      reviewer
-      existingReviewableAddress
-      _reviewDecentralizedStorageURL
-    }
-  }
-`;
 
 export default function Homepage_Trending() {
   const { chain } = useNetwork();
@@ -35,16 +25,24 @@ export default function Homepage_Trending() {
   }, [chain]);
 
   const { data: allReviews } = useQuery(GET_ALL_REVIEWS);
-  const [allReviewsByAddress, setAllReviewsByAddress] = useState({});
+  const [allReviewsByAddress, setAllReviewsByAddress] = useState<{
+    [address: string]: Review[];
+  }>({});
 
   useEffect(() => {
     if (allReviews) {
       const mappingOfReviewsByAddress: { [address: string]: Review[] } = {};
       allReviews.addedReviews.forEach((review: Review) => {
         if (mappingOfReviewsByAddress[review.existingReviewableAddress]) {
-          mappingOfReviewsByAddress[review.existingReviewableAddress].push(
-            review
+          const existingReviews =
+            mappingOfReviewsByAddress[review.existingReviewableAddress];
+          const hasReviewFromSameReviewer = existingReviews.some(
+            (existingReview: Review) =>
+              existingReview.reviewer === review.reviewer
           );
+          if (!hasReviewFromSameReviewer) {
+            existingReviews.push(review);
+          }
         } else {
           mappingOfReviewsByAddress[review.existingReviewableAddress] = [
             review
@@ -85,7 +83,8 @@ export default function Homepage_Trending() {
                         </a>
                       </h3>
                       <p className="mt-1 text-gray-900">
-                        {product.totalReviews} reviews
+                        {allReviewsByAddress[product.contractAddress]?.length}{" "}
+                        reviews
                       </p>
                       <div className="flex justify-center mt-2 flex items-center">
                         {[0, 1, 2, 3, 4].map((rating) => (
