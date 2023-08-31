@@ -112,7 +112,7 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
           href={"https://polygonscan.com/address/" + review.reviewer}
           target="_blank"
         >
-          <h3 className="font-medium text-gray-900">
+          <h3 className="font-medium text-gray-900 hover:text-blue-700">
             {myAddressTrimmed(review.reviewer)}
           </h3>
         </a>
