@@ -19,9 +19,8 @@ export default function Homepage_Trending() {
   const [products, setProducts] = useState<ProductMap[]>([]);
 
   useEffect(() => {
-    if (chain) {
-      setProducts(getTrendingProducts(chain.id));
-    }
+    const chainId = chain?.id || 137;
+    setProducts(getTrendingProducts(chainId));
   }, [chain]);
 
   const { data: allReviews } = useQuery(GET_ALL_REVIEWS);

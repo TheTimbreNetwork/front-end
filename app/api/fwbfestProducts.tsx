@@ -38,7 +38,12 @@ const chainIdToProductMap: ChainIdtoProductMap = {
       contractAddress: "0x1aba79e4fea9ec83cc59776adedf570269c2a1ea",
       description: "A collection of Open Editions created and curated by FWB"
     }
-  ],
+  ]
+};
+
+/*
+
+,
   1101: [
     {
       name: "The Starbucks Siren Collection",
@@ -115,7 +120,8 @@ const chainIdToProductMap: ChainIdtoProductMap = {
         "The .SWOOSH ID secures your place in the .SWOOSH community, where you'll meet other members, collect virtual creations, get special access to physical and virtual collections, and have the chance to co-create with Nike.You can design and obtain your own .SWOOSH ID from Nike by registering at swoosh.nike.Each .SWOOSH ID is uniquely created with input from you and can be used as part of your digital identity for access to services, features, and functionality provided through the .SWOOSH Platform. Certain rights and features require the .SWOOSH ID to be held in a supported third-party digital wallet linked to your Nike Account on the .SWOOSH Platform."
     }
   ]
-};
+
+*/
 
 export function getTrendingProducts(chainId: number): ProductMap[] {
   return chainIdToProductMap[chainId];
