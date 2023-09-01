@@ -14,6 +14,8 @@ import { useNetwork } from "wagmi";
 import { ProductMap, getTrendingProducts } from "../../api/fwbfestProducts";
 import { Review } from "../../types/types";
 
+import { initReview } from "../../utils/review-utils";
+
 // URLs for Reviews
 // https://yjxf7u26qbo2zhfsdakdvgqgyjp24s4wff6bjpozmjqebummaejq.arweave.net/wm5f016AXaycshgUOpoGwl-uS5YpfBS92WJgQNGMARM
 // https://ehgz3mc2hratntnemqedyn73mzgbhe3vachoiaxmsylu6ma7ev4q.arweave.net/Ic2dsFo8QTbNpGQIPDf7ZkwTk3UAjuQC7JYXTzAfJXk
@@ -38,57 +40,7 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
   }
 
   useEffect(() => {
-    async function init() {
-      if (review._reviewDecentralizedStorageURL) {
-        const response = await fetch(review._reviewDecentralizedStorageURL);
-        const textContent = await response.text();
-
-        try {
-          let modifiedTextContent = textContent.split("[reviewContent]");
-          modifiedTextContent = modifiedTextContent[1].split("[rating]");
-          setReviewContent(modifiedTextContent[0]);
-          setReviewRating(Number(modifiedTextContent[1]));
-        } catch (e) {
-          console.error(e);
-        }
-
-        // Convert the currentBlockTime to a human readable date
-        const date = new Date(Number(review.currentBlockTime) * 1000);
-        const today = new Date();
-        const yesterday = new Date(today);
-
-        yesterday.setDate(yesterday.getDate() - 1);
-
-        if (date.toDateString() === today.toDateString()) {
-          setReviewDate(
-            `Today at ${date.toLocaleTimeString([], {
-              hour: "numeric",
-              minute: "2-digit"
-            })}`
-          );
-        } else if (date.toDateString() === yesterday.toDateString()) {
-          setReviewDate(
-            `Yesterday at ${date.toLocaleTimeString([], {
-              hour: "numeric",
-              minute: "2-digit"
-            })}`
-          );
-        } else {
-          setReviewDate(
-            `${date.toLocaleDateString([], {
-              year: "2-digit",
-              month: "numeric",
-              day: "numeric"
-            })} at ${date.toLocaleTimeString([], {
-              hour: "numeric",
-              minute: "2-digit"
-            })}`
-          );
-        }
-      }
-    }
-
-    init();
+    initReview(review, setReviewContent, setReviewRating, setReviewDate);
   }, [review]);
 
   return (
