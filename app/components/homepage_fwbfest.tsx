@@ -28,6 +28,12 @@ export default function Homepage_Trending() {
   const [allReviewsByAddress, setAllReviewsByAddress] = useState<{
     [address: string]: Review[];
   }>({});
+  const [updatedReviewsByAddress, setUpdatedReviewsByAddress] = useState<{
+    [address: string]: Review[];
+  }>({});
+  const [addressToAverageRating, setAddressToAverageRating] = useState<{
+    [address: string]: number;
+  }>({});
 
   useEffect(() => {
     if (allReviews) {
@@ -52,6 +58,53 @@ export default function Homepage_Trending() {
       setAllReviewsByAddress(mappingOfReviewsByAddress);
     }
   }, [allReviews]);
+
+  useEffect(() => {
+    const fetchRatingsAndUpdateReviews = async () => {
+      if (allReviewsByAddress) {
+        const updatedReviewsByAddress: { [address: string]: Review[] } = {};
+        for (const address of Object.keys(allReviewsByAddress)) {
+          updatedReviewsByAddress[address] = [];
+          for (const review of allReviewsByAddress[address]) {
+            let tempReview = { ...review };
+            if (review._reviewDecentralizedStorageURL) {
+              try {
+                const response = await fetch(
+                  review._reviewDecentralizedStorageURL
+                );
+                const textContent = await response.text();
+                let modifiedTextContent = textContent.split("[reviewContent]");
+                modifiedTextContent = modifiedTextContent[1].split("[rating]");
+                tempReview.rating = Number(modifiedTextContent[1]);
+              } catch (e) {
+                console.error(e);
+              }
+            }
+            updatedReviewsByAddress[address].push(tempReview);
+          }
+        }
+        setUpdatedReviewsByAddress(updatedReviewsByAddress);
+      }
+    };
+
+    fetchRatingsAndUpdateReviews();
+  }, [allReviewsByAddress]);
+
+  useEffect(() => {
+    if (updatedReviewsByAddress) {
+      const addressToAverageRating: { [address: string]: number } = {};
+      Object.keys(updatedReviewsByAddress).forEach((address) => {
+        const reviews = updatedReviewsByAddress[address];
+        let totalRating = 0;
+        for (let i = 0; i < reviews.length; i++) {
+          totalRating += reviews[i].rating || 0;
+        }
+        const averageRating = totalRating / reviews.length;
+        addressToAverageRating[address] = averageRating;
+      });
+      setAddressToAverageRating(addressToAverageRating);
+    }
+  }, [updatedReviewsByAddress]);
 
   return (
     <div className="w-full">
@@ -90,7 +143,8 @@ export default function Homepage_Trending() {
                           <StarIcon
                             key={rating}
                             className={classNames(
-                              product.averageReview > rating
+                              addressToAverageRating[product.contractAddress] >
+                                rating
                                 ? "text-yellow-400"
                                 : "text-gray-300",
                               "h-5 w-5 flex-shrink-0"

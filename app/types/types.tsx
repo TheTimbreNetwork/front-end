@@ -5,6 +5,7 @@ export type Review = {
   _reviewDecentralizedStorageURL: string;
   currentBlockTime: string;
   transactionHash?: string;
+  rating?: number;
 };
 
 export type SelectMenuProps = {
