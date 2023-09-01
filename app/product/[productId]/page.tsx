@@ -352,13 +352,12 @@ export default function Page({ params }: { params: { productId: string } }) {
   const { chain } = useNetwork();
 
   useEffect(() => {
-    if (chain) {
-      const reviewProduct: ProductMap =
-        getTrendingProducts(chain.id).find(
-          (review) => review.contractAddress === params.productId
-        ) || ({} as ProductMap);
-      setProduct(reviewProduct);
-    }
+    const chainId = chain?.id || 137;
+    const reviewProduct: ProductMap =
+      getTrendingProducts(chainId).find(
+        (review) => review.contractAddress === params.productId
+      ) || ({} as ProductMap);
+    setProduct(reviewProduct);
   }, [chain]);
 
   return (
