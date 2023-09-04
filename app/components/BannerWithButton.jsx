@@ -58,7 +58,7 @@ export function BannerWithButton({ closeBanner }) {
       <div className="flex flex-1 justify-end">
         <button
           type="button"
-          onClick={() => closeBanner()}
+          onClick={() => closeBanner(false)}
           className="-m-3 p-3 focus-visible:outline-offset-[-4px]"
         >
           <span className="sr-only">Dismiss</span>

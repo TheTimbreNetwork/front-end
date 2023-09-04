@@ -3,7 +3,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import "@rainbow-me/rainbowkit/styles.css";
 import {
@@ -57,7 +57,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const [isBannerVisible, setIsBannerVisible] = useState(true);
+  const [isBannerVisible, setIsBannerVisible] = useState(() => {
+    // Get the initial state from localStorage
+    const savedState = localStorage.getItem("isBannerVisible");
+    return savedState !== null && savedState !== "undefined"
+      ? JSON.parse(savedState)
+      : true;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("isBannerVisible", JSON.stringify(isBannerVisible));
+  }, [isBannerVisible]);
 
   return (
     <html lang="en">
