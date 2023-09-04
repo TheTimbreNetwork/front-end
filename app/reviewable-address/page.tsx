@@ -26,24 +26,29 @@ export default function ReviewableAddressPage() {
     TimbreProtocolABI_Gnosis_Import as ABIEntry[];
 
   useEffect(() => {
-    if (chain) {
-      if (chain.id === 137) {
-        setTimbreProtocolABI(TimbreProtocolABI_Polygon);
-        setTimbreProtocolAddress(
-          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ADDRESS
-        );
-      } else if (chain.id === 1101) {
-        setTimbreProtocolABI(TimbreProtocolABI_PolygonZKEVM);
-        setTimbreProtocolAddress(
-          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ZKEVM_ADDRESS
-        );
-      } else if (chain.id === 100) {
-        setTimbreProtocolABI(TimbreProtocolABI_Gnosis);
-        setTimbreProtocolAddress(
-          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_GNOSIS_ADDRESS
-        );
-      }
-    }
+    // chainId hardcoded to 137 (Polygon Mainnet) for now until more chains accepted.
+    setTimbreProtocolABI(TimbreProtocolABI_Polygon);
+    setTimbreProtocolAddress(
+      process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ADDRESS
+    );
+    // if (chain) {
+    //   if (chain.id === 137) {
+    //     setTimbreProtocolABI(TimbreProtocolABI_Polygon);
+    //     setTimbreProtocolAddress(
+    //       process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ADDRESS
+    //     );
+    //   } else if (chain.id === 1101) {
+    //     setTimbreProtocolABI(TimbreProtocolABI_PolygonZKEVM);
+    //     setTimbreProtocolAddress(
+    //       process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ZKEVM_ADDRESS
+    //     );
+    //   } else if (chain.id === 100) {
+    //     setTimbreProtocolABI(TimbreProtocolABI_Gnosis);
+    //     setTimbreProtocolAddress(
+    //       process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_GNOSIS_ADDRESS
+    //     );
+    //   }
+    // }
   }, [chain]);
 
   const { data: newData, write } = useContractWrite({

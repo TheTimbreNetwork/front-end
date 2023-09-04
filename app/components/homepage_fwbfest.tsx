@@ -25,7 +25,7 @@ export default function Homepage_Trending() {
     setProducts(getTrendingProducts(chainId));
   }, [chain]);
 
-  const { data: allReviews } = useQuery(GET_ALL_REVIEWS);
+  const { loading, error, data: allReviews } = useQuery(GET_ALL_REVIEWS);
   const [allReviewsByAddress, setAllReviewsByAddress] = useState<{
     [address: string]: Review[];
   }>({});
@@ -37,6 +37,10 @@ export default function Homepage_Trending() {
   }>({});
 
   useEffect(() => {
+    console.log("allReviews:", allReviews);
+    console.log("Query loading status:", loading);
+    console.log("Query error:", error);
+    console.log("All reviews:", allReviews);
     if (allReviews) {
       const mappingOfReviewsByAddress: { [address: string]: Review[] } = {};
       allReviews.addedReviews.forEach((review: Review) => {

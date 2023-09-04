@@ -16,18 +16,22 @@ export default function Template({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     let url;
 
-    if (chain) {
-      if (chain.id === 1101) {
-        url =
-          process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ZKEVM_THEGRAPH_URL;
-      } else if (chain.id === 100) {
-        url = process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_GNOSIS_THEGRAPH_URL;
-      } else {
-        // chain.id === 137
-        url = process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_THEGRAPH_URL;
-      }
-      if (url) setTheGraphURI(url);
-    }
+    // chainId hardcoded to 137 (Polygon Mainnet) for now until more chains accepted.
+    url = process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_THEGRAPH_URL;
+
+    if (url) setTheGraphURI(url);
+    // if (chain) {
+    //   if (chain.id === 1101) {
+    //     url =
+    //       process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_ZKEVM_THEGRAPH_URL;
+    //   } else if (chain.id === 100) {
+    //     url = process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_GNOSIS_THEGRAPH_URL;
+    //   } else {
+    //     // chain.id === 137
+    //     url = process.env.NEXT_PUBLIC_TIMBRE_PROTOCOL_POLYGON_THEGRAPH_URL;
+    //   }
+    //   if (url) setTheGraphURI(url);
+    // }
   }, [chain]);
 
   return <ApolloProvider client={apolloClient}>{children}</ApolloProvider>;
