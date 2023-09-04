@@ -352,7 +352,9 @@ export default function Page({ params }: { params: { productId: string } }) {
   const { chain } = useNetwork();
 
   useEffect(() => {
-    const chainId = chain?.id || 137;
+    // const chainId = chain?.id || 137;
+    // chainId hardcoded to 137 (Polygon Mainnet) for now until more chains accepted.
+    const chainId = 137;
     const reviewProduct: ProductMap =
       getTrendingProducts(chainId).find(
         (review) => review.contractAddress === params.productId

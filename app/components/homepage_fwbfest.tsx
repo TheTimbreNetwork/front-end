@@ -19,7 +19,9 @@ export default function Homepage_Trending() {
   const [products, setProducts] = useState<ProductMap[]>([]);
 
   useEffect(() => {
-    const chainId = chain?.id || 137;
+    // const chainId = chain?.id || 137;
+    // chainId hardcoded to 137 (Polygon Mainnet) for now until more chains accepted.
+    const chainId = 137;
     setProducts(getTrendingProducts(chainId));
   }, [chain]);
 
