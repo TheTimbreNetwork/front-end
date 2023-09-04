@@ -37,10 +37,6 @@ export default function Homepage_Trending() {
   }>({});
 
   useEffect(() => {
-    console.log("allReviews:", allReviews);
-    console.log("Query loading status:", loading);
-    console.log("Query error:", error);
-    console.log("All reviews:", allReviews);
     if (allReviews) {
       const mappingOfReviewsByAddress: { [address: string]: Review[] } = {};
       allReviews.addedReviews.forEach((review: Review) => {

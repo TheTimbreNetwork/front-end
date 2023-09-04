@@ -52,7 +52,6 @@ export default function Homepage_Trending() {
         }
       });
       setAllReviewsByAddress(mappingOfReviewsByAddress);
-      console.log(allReviewsByAddress);
     }
   }, [allReviews]);
 

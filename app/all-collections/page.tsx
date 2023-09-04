@@ -45,7 +45,6 @@ function Table() {
   useEffect(() => {
     if (allReviewableAddresses) {
       setReviewableAddresses(allReviewableAddresses.addedReviewableAddresses);
-      console.log(reviewableAddresses);
     }
   }, [allReviewableAddresses]);
 
