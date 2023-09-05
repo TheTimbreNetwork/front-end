@@ -1,3 +1,8 @@
+export type AppContextType = {
+  isBannerVisible: boolean;
+  setIsBannerVisible: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
 export type Review = {
   reviewer: string;
   id: string;
