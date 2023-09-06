@@ -2,7 +2,7 @@
 
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { useQuery } from "@apollo/client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Image from "next/image";
 
 import { Fragment } from "react";
@@ -15,6 +15,8 @@ import { ProductMap, getTrendingProducts } from "../../api/fwbfestProducts";
 import { Review } from "../../types/types";
 
 import { initReview } from "../../utils/review-utils";
+
+import { AppContext } from "../../layout";
 
 // URLs for Reviews
 // https://yjxf7u26qbo2zhfsdakdvgqgyjp24s4wff6bjpozmjqebummaejq.arweave.net/wm5f016AXaycshgUOpoGwl-uS5YpfBS92WJgQNGMARM
@@ -350,6 +352,12 @@ export default function Page({ params }: { params: { productId: string } }) {
   const [product, setProduct] = useState<ProductMap>({} as ProductMap);
 
   const { chain } = useNetwork();
+
+  const { test, setTest } = useContext(AppContext);
+
+  useEffect(() => {
+    console.log("page.tsx test", test);
+  }, [test]);
 
   useEffect(() => {
     // const chainId = chain?.id || 137;
