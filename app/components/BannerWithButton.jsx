@@ -30,10 +30,8 @@ export function BannerWithButton({ closeBanner }) {
       </div>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         <p className="text-sm leading-6 text-gray-900">
-          <strong className="font-semibold lg:hidden">
-            Give your opinion!
-          </strong>
-          <strong className="hidden font-semibold lg:inline">Help</strong>
+          <strong className="font-semibold lg:hidden">Get Help</strong>
+          <strong className="hidden font-semibold lg:inline">Get Help</strong>
           <svg
             viewBox="0 0 2 2"
             className="mx-2 inline hidden h-0.5 w-0.5 fill-current lg:inline"
