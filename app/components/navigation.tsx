@@ -7,7 +7,8 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-import logoBlackTimbreNetwork from "@/public/assets/timbre-logo/svg/logo-black-beta2.svg";
+import logoBlackTimbreNetworkAllSizes from "@/public/assets/timbre-logo/svg/logo-black-beta-all-sizes.svg";
+import logoBlackTimbreNetworkSmallSize from "@/public/assets/timbre-logo/svg/logo-black-beta-small-size.svg";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -16,7 +17,7 @@ const navigation = [
   // { name: "Company", href: "#" }
 ];
 
-export default function Example() {
+export default function Navigation() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -28,8 +29,14 @@ export default function Example() {
         <div className="flex lg:flex-1">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
+            {/* <Image
+              src={logoBlackTimbreNetworkAllSizes}
+              alt={"Timbre Network Logo"}
+              className="h-16 hidden"
+              unoptimized
+            /> */}
             <Image
-              src={logoBlackTimbreNetwork}
+              src={logoBlackTimbreNetworkSmallSize}
               alt={"Timbre Network Logo"}
               className="h-16"
               unoptimized
