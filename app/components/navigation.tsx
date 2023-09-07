@@ -11,9 +11,14 @@ import logoBlackTimbreNetworkAllSizes from "@/public/assets/timbre-logo/svg/logo
 import logoBlackTimbreNetworkSmallSize from "@/public/assets/timbre-logo/svg/logo-black-beta-small-size.svg";
 import logoBlackTimbreNetworkTest from "@/public/assets/timbre-logo/svg/untitleddesign.svg";
 
-const navigation = [
-  { name: "Home", href: "/" },
-  { name: "All Collection", href: "all-collections" }
+type NavigationItem = {
+  name: string;
+  href: string;
+};
+
+const navigation: NavigationItem[] = [
+  // { name: "Home", href: "/" },
+  // { name: "All Collection", href: "all-collections" }
   // { name: "Marketplace", href: "#" },
   // { name: "Company", href: "#" }
 ];
