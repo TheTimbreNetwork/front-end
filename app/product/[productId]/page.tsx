@@ -4,6 +4,7 @@ import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { useState, useEffect, useContext } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Fragment } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
@@ -60,14 +61,14 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
           "py-10"
         )}
       >
-        <a
+        <Link
           href={"https://polygonscan.com/address/" + review.reviewer}
           target="_blank"
         >
           <h3 className="font-medium text-gray-900 hover:text-blue-700">
             {myAddressTrimmed(review.reviewer)}
           </h3>
-        </a>
+        </Link>
         <p>
           <time dateTime={reviewDate}>{reviewDate}</time>
         </p>
@@ -91,10 +92,10 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
           dangerouslySetInnerHTML={{ __html: reviewContent }}
         />
         <p className="pt-2 text-xl text-gray-900 flex items-center">
-          <a href={review._reviewDecentralizedStorageURL} target="_blank">
+          <Link href={review._reviewDecentralizedStorageURL} target="_blank">
             <DocumentTextIcon className="h-7" />
-          </a>
-          <a
+          </Link>
+          <Link
             href={`https://polygonscan.com/tx/${review.transactionHash}`}
             target="_blank"
           >
@@ -105,7 +106,7 @@ function ReviewRow({ review, reviewIdx }: ReviewRowProps) {
               width={40}
               unoptimized
             />
-          </a>
+          </Link>
         </p>
       </div>
     </div>
@@ -297,14 +298,14 @@ function ProductOverview({ productId, product }: ProductOverviewProps) {
 
             <p className="mt-6 text-gray-500">{product.description}</p>
 
-            <a href={productId + "/post-review"}>
+            <Link href={productId + "/post-review"}>
               <button
                 type="button"
                 className="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-600 px-8 py-3 text-base font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-gray focus:ring-offset-2 focus:ring-offset-gray-50"
               >
                 Post Review
               </button>
-            </a>
+            </Link>
           </div>
 
           <div className="mx-auto mt-16 w-full max-w-2xl lg:col-span-7 lg:mt-0 lg:max-w-none">

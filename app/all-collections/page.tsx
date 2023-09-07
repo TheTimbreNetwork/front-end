@@ -3,6 +3,7 @@
 import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const GET_ALL_REVIEWABLE_ADDRESSES = gql`
   query GetAllReviewableAddresses {
@@ -158,7 +159,7 @@ function Table() {
                           "relative whitespace-nowrap py-4 pr-4 pl-3 text-right text-sm font-medium sm:pr-8 lg:pr-8"
                         )}
                       >
-                        <a
+                        <Link
                           href={"product/" + address.newReviewableAddress}
                           className="text-gray-600 hover:text-gray-900"
                         >
@@ -166,7 +167,7 @@ function Table() {
                           <span className="sr-only">
                             , {address.newReviewableAddress}
                           </span>
-                        </a>
+                        </Link>
                       </td>
                     </tr>
                   )

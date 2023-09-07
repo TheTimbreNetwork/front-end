@@ -27,10 +27,8 @@ import { publicProvider } from "wagmi/providers/public";
 import Navigation from "./components/navigation";
 import { Footer } from "./components/Footer";
 import { BannerContainer } from "./components/BannerContainer";
-import { BannerWithButton } from "./components/BannerWithButton";
 
 import { AllProvider } from "../context/AllContext";
-import { useBannerState } from "../context/AllContext";
 
 // removed alchemyProvider({ apiKey: process.env.ALCHEMY_ID }), from before publicProvider()
 //  due to extra setup needed for alchemy
@@ -62,21 +60,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const [showBanner, setShowBanner] = useBannerState();
-  // const [isBannerVisible, setIsBannerVisible] = useState(() => {
-  //   if (typeof window !== "undefined") {
-  //     const savedState = localStorage.getItem("isBannerVisible");
-  //     return savedState !== null && savedState !== "undefined"
-  //       ? JSON.parse(savedState)
-  //       : true;
-  //   }
-  //   return true;
-  // });
-
-  // useEffect(() => {
-  //   localStorage.setItem("isBannerVisible", JSON.stringify(isBannerVisible));
-  // }, [isBannerVisible]);
-
   return (
     <html lang="en">
       <body className={inter.className}>

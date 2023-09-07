@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
@@ -25,7 +26,7 @@ export default function Example() {
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
+          <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             <Image
               src={logoBlackTimbreNetwork}
@@ -33,17 +34,17 @@ export default function Example() {
               className="h-16"
               unoptimized
             />
-          </a>
+          </Link>
         </div>
         <div className="hidden lg:flex lg:gap-x-12 mr-16">
           {navigation.map((item) => (
-            <a
+            <Link
               key={item.name}
               href={item.href}
               className="text-lg font-medium leading-6 text-gray-900"
             >
               {item.name}
-            </a>
+            </Link>
           ))}
         </div>
         <div className="flex flex-1 items-center justify-end gap-x-6 text-sm">
@@ -82,13 +83,13 @@ export default function Example() {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (
-                  <a
+                  <Link
                     key={item.name}
                     href={item.href}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 text-xl"
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNetwork } from "wagmi";
+import Link from "next/link";
 
 import { gql } from "@apollo/client";
 import { useQuery } from "@apollo/client";
@@ -62,13 +63,13 @@ export default function Homepage_Trending() {
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
             Trending products
           </h2>
-          <a
+          <Link
             href="all-collections"
             className="hidden text-sm font-semibold text-gray-600 hover:text-gray-500 sm:block"
           >
             See everything
             <span aria-hidden="true"> &rarr;</span>
-          </a>
+          </Link>
         </div>
 
         <div className="relative mt-8">
@@ -91,10 +92,10 @@ export default function Homepage_Trending() {
                     </div>
                     <div className="mt-6">
                       <h3 className="mt-1 font-semibold text-gray-900">
-                        <a href={"product/" + product.contractAddress}>
+                        <Link href={"product/" + product.contractAddress}>
                           <span className="absolute inset-0" />
                           {product.name}
-                        </a>
+                        </Link>
                       </h3>
                       <p className="mt-1 text-gray-900">
                         {product.totalReviews} reviews
@@ -122,13 +123,13 @@ export default function Homepage_Trending() {
         </div>
 
         <div className="mt-12 flex px-4 sm:hidden">
-          <a
+          <Link
             href="#"
             className="text-sm font-semibold text-gray-600 hover:text-gray-500"
           >
             See everything
             <span aria-hidden="true"> &rarr;</span>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
