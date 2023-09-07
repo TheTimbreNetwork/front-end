@@ -9,6 +9,7 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 import logoBlackTimbreNetworkAllSizes from "@/public/assets/timbre-logo/svg/logo-black-beta-all-sizes.svg";
 import logoBlackTimbreNetworkSmallSize from "@/public/assets/timbre-logo/svg/logo-black-beta-small-size.svg";
+import logoBlackTimbreNetworkTest from "@/public/assets/timbre-logo/svg/untitleddesign.svg";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -41,6 +42,12 @@ export default function Navigation() {
               className="h-16"
               unoptimized
             />
+            {/* <Image
+              src={logoBlackTimbreNetworkTest}
+              alt={"Timbre Network Logo"}
+              className="h-32"
+              unoptimized
+            /> */}
           </Link>
         </div>
         <div className="hidden lg:flex lg:gap-x-12 mr-16">
