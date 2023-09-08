@@ -69,6 +69,8 @@ export default function Navigation() {
         <div className="flex flex-1 items-center justify-end gap-x-6 text-sm">
           <ConnectButton chainStatus="icon" accountStatus="address" />
         </div>
+        {/* 
+        Add this back in once we add menu items back into the navigation.
         <div className="flex lg:hidden">
           <button
             type="button"
@@ -78,7 +80,8 @@ export default function Navigation() {
             <span className="sr-only">Open main menu</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
-        </div>
+        </div> 
+        */}
       </nav>
       <Dialog
         as="div"
