@@ -32,7 +32,7 @@ export default function Navigation() {
         className="mx-auto flex max-w-7xl items-center justify-between gap-x-6 p-6 lg:px-8"
         aria-label="Global"
       >
-        <div className="flex lg:flex-1">
+        <div className="flex lg:flex-1 ">
           <Link href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             {/* <Image
@@ -66,7 +66,7 @@ export default function Navigation() {
             </Link>
           ))}
         </div>
-        <div className="flex flex-1 items-center justify-end gap-x-6 text-sm">
+        <div className="text-sm w-1/2 flex justify-end">
           <ConnectButton chainStatus="icon" accountStatus="address" />
         </div>
         {/* 
