@@ -5,7 +5,13 @@ A privacy-preserving consumer data platform.
 Visit [Timbre Network](https://www.beta-timbre.network/) by clicking here.
 
 ![Picture 1](TimbreNetwork_1.png)
+
+<pre></pre>
+
 ![Picture 2](TimbreNetwork_2.png)
+
+<pre></pre>
+
 ![Picture 3](TimbreNetwork_3.png)
 
 ## What is this repository?
